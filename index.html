@@ -65,70 +65,128 @@
   </header>
 
   <!-- Sidebar Navigation -->
-  <aside id="sidebar" class="fixed md:static inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col transform -translate-x-full md:translate-x-0 transition-transform duration-200 ease-in-out">
+  <aside id="sidebar" class="group/sidebar fixed md:sticky top-0 inset-y-0 left-0 z-50 w-64 md:w-20 md:hover:w-64 bg-white border-r border-slate-200 flex flex-col transform -translate-x-full md:translate-x-0 transition-all duration-300 ease-in-out md:hover:shadow-xl overflow-hidden h-screen flex-shrink-0">
     <!-- Logo -->
-    <div class="p-6 hidden md:flex items-center space-x-3 border-b border-slate-100">
-      <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-indigo-200 shadow-md">
+    <div class="p-4 md:px-5 md:py-6 hidden md:flex items-center border-b border-slate-100 overflow-hidden">
+      <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-indigo-200 shadow-md flex-shrink-0 transition-transform duration-300 group-hover/sidebar:scale-105">
         <i class="fa-solid fa-shapes text-xl"></i>
       </div>
-      <div>
+      <div class="ml-3 opacity-0 md:group-hover/sidebar:opacity-100 translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap overflow-hidden">
         <h1 class="font-bold text-xl text-slate-900 tracking-tight">Life<span class="text-indigo-600">Hub</span></h1>
-        <p class="text-xs text-slate-400 font-medium">All-in-One Productivity</p>
+        <p class="text-[11px] text-slate-400 font-medium">All-in-One Productivity</p>
       </div>
     </div>
 
     <!-- Navigation Links -->
-    <nav class="flex-1 p-4 space-y-1.5 overflow-y-auto custom-scrollbar">
-      <p class="px-3 text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Menu Utama</p>
+    <nav class="flex-1 p-3 md:p-3.5 space-y-1.5 overflow-y-auto custom-scrollbar overflow-x-hidden">
+      <p class="px-2.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2 opacity-0 md:group-hover/sidebar:opacity-100 transition-opacity duration-200 whitespace-nowrap">Menu Utama</p>
       
-      <button data-tab="dashboard" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all text-white bg-indigo-600 shadow-sm shadow-indigo-100">
-        <i class="fa-solid fa-chart-pie w-5 text-center"></i>
-        <span>Dashboard</span>
-      </button>
-
-      <button data-tab="finance" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 hover:text-slate-900">
-        <i class="fa-solid fa-wallet w-5 text-center text-emerald-500"></i>
-        <span>Keuangan</span>
-      </button>
-
-      <button data-tab="tasks" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 hover:text-slate-900">
-        <i class="fa-solid fa-list-check w-5 text-center text-amber-500"></i>
-        <span>Tugas & Target</span>
-        <span id="badgePendingTasks" class="ml-auto bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full font-semibold hidden">0</span>
-      </button>
-
-      <button data-tab="notes" class="nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 hover:text-slate-900">
-        <i class="fa-solid fa-note-sticky w-5 text-center text-sky-500"></i>
-        <span>Catatan</span>
-      </button>
-
-      <div class="pt-6">
-        <p class="px-3 text-[11px] font-semibold text-slate-400 uppercase tracking-wider mb-2">Manajemen Data</p>
-        <button id="btnExportData" class="w-full flex items-center space-x-3 px-3.5 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100">
-          <i class="fa-solid fa-file-export w-5 text-slate-400"></i>
-          <span>Ekspor Data (Backup)</span>
+      <!-- Dashboard -->
+      <div class="relative group/item">
+        <button data-tab="dashboard" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-white bg-indigo-600 shadow-sm shadow-indigo-100">
+          <span class="w-6 flex items-center justify-center flex-shrink-0 text-base">
+            <i class="fa-solid fa-chart-pie"></i>
+          </span>
+          <span class="nav-label ml-3 opacity-0 md:group-hover/sidebar:opacity-100 translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap flex-1 text-left">Dashboard</span>
         </button>
-        <label class="w-full flex items-center space-x-3 px-3.5 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 cursor-pointer">
-          <i class="fa-solid fa-file-import w-5 text-slate-400"></i>
-          <span>Impor Data JSON</span>
-          <input type="file" id="importFileInput" accept=".json" class="hidden">
-        </label>
-        <button id="btnResetData" class="w-full flex items-center space-x-3 px-3.5 py-2 rounded-xl text-xs font-medium text-rose-600 hover:bg-rose-50">
-          <i class="fa-solid fa-trash-can w-5 text-rose-500"></i>
-          <span>Reset Semua Data</span>
+        <!-- Floating Tooltip on Hover (When Collapsed) -->
+        <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+          Dashboard
+        </div>
+      </div>
+
+      <!-- Keuangan -->
+      <div class="relative group/item">
+        <button data-tab="finance" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 hover:text-slate-900">
+          <span class="w-6 flex items-center justify-center flex-shrink-0 text-base text-emerald-500">
+            <i class="fa-solid fa-wallet"></i>
+          </span>
+          <span class="nav-label ml-3 opacity-0 md:group-hover/sidebar:opacity-100 translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap flex-1 text-left">Keuangan</span>
         </button>
+        <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+          Keuangan
+        </div>
+      </div>
+
+      <!-- Tugas & Target -->
+      <div class="relative group/item">
+        <button data-tab="tasks" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 hover:text-slate-900">
+          <span class="w-6 flex items-center justify-center flex-shrink-0 text-base text-amber-500">
+            <i class="fa-solid fa-list-check"></i>
+          </span>
+          <span class="nav-label ml-3 opacity-0 md:group-hover/sidebar:opacity-100 translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap flex-1 text-left">Tugas & Target</span>
+          <span id="badgePendingTasks" class="ml-auto bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full font-semibold opacity-0 md:group-hover/sidebar:opacity-100 transition-opacity duration-300 hidden">0</span>
+        </button>
+        <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+          Tugas & Target
+        </div>
+      </div>
+
+      <!-- Catatan -->
+      <div class="relative group/item">
+        <button data-tab="notes" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 hover:text-slate-900">
+          <span class="w-6 flex items-center justify-center flex-shrink-0 text-base text-sky-500">
+            <i class="fa-solid fa-note-sticky"></i>
+          </span>
+          <span class="nav-label ml-3 opacity-0 md:group-hover/sidebar:opacity-100 translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap flex-1 text-left">Catatan</span>
+        </button>
+        <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+          Catatan
+        </div>
+      </div>
+
+      <!-- Manajemen Data -->
+      <div class="pt-5 border-t border-slate-100/80 my-2">
+        <p class="px-2.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2 opacity-0 md:group-hover/sidebar:opacity-100 transition-opacity duration-200 whitespace-nowrap">Manajemen Data</p>
+        
+        <div class="relative group/item">
+          <button id="btnExportData" class="w-full flex items-center px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100">
+            <span class="w-6 flex items-center justify-center flex-shrink-0 text-slate-400">
+              <i class="fa-solid fa-file-export"></i>
+            </span>
+            <span class="ml-3 opacity-0 md:group-hover/sidebar:opacity-100 translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap">Ekspor Backup</span>
+          </button>
+          <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+            Ekspor Data
+          </div>
+        </div>
+
+        <div class="relative group/item">
+          <label class="w-full flex items-center px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 cursor-pointer">
+            <span class="w-6 flex items-center justify-center flex-shrink-0 text-slate-400">
+              <i class="fa-solid fa-file-import"></i>
+            </span>
+            <span class="ml-3 opacity-0 md:group-hover/sidebar:opacity-100 translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap">Impor JSON</span>
+            <input type="file" id="importFileInput" accept=".json" class="hidden">
+          </label>
+          <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+            Impor Data
+          </div>
+        </div>
+
+        <div class="relative group/item">
+          <button id="btnResetData" class="w-full flex items-center px-3 py-2 rounded-xl text-xs font-medium text-rose-600 hover:bg-rose-50">
+            <span class="w-6 flex items-center justify-center flex-shrink-0 text-rose-500">
+              <i class="fa-solid fa-trash-can"></i>
+            </span>
+            <span class="ml-3 opacity-0 md:group-hover/sidebar:opacity-100 translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap">Reset Data</span>
+          </button>
+          <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+            Reset Semua Data
+          </div>
+        </div>
       </div>
     </nav>
 
     <!-- User / App Info Footer -->
-    <div class="p-4 border-t border-slate-100 bg-slate-50/50">
-      <div class="flex items-center space-x-3">
-        <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600">
+    <div class="p-3.5 border-t border-slate-100 bg-slate-50/50 overflow-hidden">
+      <div class="flex items-center">
+        <div class="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center text-slate-600 flex-shrink-0">
           <i class="fa-solid fa-user text-sm"></i>
         </div>
-        <div class="flex-1 min-w-0">
+        <div class="ml-3 opacity-0 md:group-hover/sidebar:opacity-100 translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap overflow-hidden">
           <p class="text-xs font-semibold text-slate-800 truncate">Ruang Pribadi</p>
-          <p class="text-[11px] text-slate-400 truncate">Offline / Local Storage</p>
+          <p class="text-[10px] text-slate-400 truncate">Offline / Local Storage</p>
         </div>
       </div>
     </div>
@@ -138,7 +196,7 @@
   <div id="mobileBackdrop" class="fixed inset-0 bg-slate-900/40 z-40 hidden md:hidden"></div>
 
   <!-- Main Content Area -->
-  <main class="flex-1 overflow-y-auto h-screen p-4 sm:p-6 lg:p-8 custom-scrollbar">
+  <main class="flex-1 overflow-y-auto h-screen p-4 sm:p-6 lg:p-8 custom-scrollbar transition-all duration-300 ease-in-out">
     
     <!-- Top Greeting & Date -->
     <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">

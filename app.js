@@ -145,6 +145,15 @@ function initNavigation() {
     mobileMenuBtn.addEventListener('click', toggleMobileMenu);
     backdrop.addEventListener('click', toggleMobileMenu);
   }
+
+  // Handle sidebar transition smooth chart update
+  if (sidebar) {
+    sidebar.addEventListener('transitionend', () => {
+      if (expenseChartInstance) {
+        expenseChartInstance.resize();
+      }
+    });
+  }
 }
 
 function switchTab(tabId) {
@@ -161,9 +170,9 @@ function switchTab(tabId) {
   document.querySelectorAll('.nav-btn').forEach(btn => {
     const isCurrent = btn.getAttribute('data-tab') === tabId;
     if (isCurrent) {
-      btn.className = 'nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all text-white bg-indigo-600 shadow-sm shadow-indigo-100';
+      btn.className = 'nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-white bg-indigo-600 shadow-sm shadow-indigo-100';
     } else {
-      btn.className = 'nav-btn w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 hover:text-slate-900';
+      btn.className = 'nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 hover:text-slate-900';
     }
   });
 
