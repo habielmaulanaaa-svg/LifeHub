@@ -68,7 +68,7 @@
 
     /* Mobile Bottom Navigation & Desktop Quick Add Transitions */
     #mobileBottomNav {
-      bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+      bottom: calc(1.35rem + env(safe-area-inset-bottom, 0px));
       transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, visibility 0.4s;
     }
 
@@ -281,10 +281,10 @@
   <div id="mobileBackdrop" class="fixed inset-0 bg-slate-900/40 z-40 hidden md:hidden"></div>
 
   <!-- Main Content Area -->
-  <main class="flex-1 overflow-y-auto h-screen p-3.5 sm:p-6 lg:p-8 pb-28 md:pb-8 custom-scrollbar transition-all duration-300 ease-in-out">
+  <main class="flex-1 overflow-y-auto h-screen p-3.5 sm:p-6 lg:p-8 pb-32 md:pb-8 custom-scrollbar transition-all duration-300 ease-in-out">
     
     <!-- Top Greeting & Date -->
-    <header class="flex items-center justify-between gap-3 mb-5 sm:mb-8">
+    <header id="topGreetingHeader" class="flex items-center justify-between gap-3 mb-5 sm:mb-8">
       <div>
         <h2 id="pageGreeting" class="text-lg sm:text-2xl font-bold text-slate-900 leading-tight">Memuat sapaan...</h2>
         <p id="currentDateDisplay" class="text-xs sm:text-sm text-slate-500 mt-0.5 sm:mt-1">Memuat tanggal...</p>
@@ -631,41 +631,41 @@
   <!-- FLOATING BOTTOM NAVIGATION (KHUSUS MOBILE/ANDROID) -->
   <!-- ============================================== -->
   <nav id="mobileBottomNav" class="fixed inset-x-0 z-40 flex items-center justify-center pointer-events-none px-3 sm:px-4" aria-label="Navigasi Bawah">
-    <div class="flex items-center gap-2.5 max-w-sm w-full justify-center">
+    <div class="flex items-center gap-3 max-w-sm w-full justify-center">
       
-      <!-- Soft Rounded Capsule Dock -->
-      <div class="pointer-events-auto bg-[#e5eadf]/95 backdrop-blur-xl border border-white/80 shadow-[0_12px_36px_-6px_rgba(38,61,38,0.22)] rounded-full p-1.5 flex items-center gap-1 transition-all duration-300">
+      <!-- Soft Rounded Capsule Dock (Slightly larger, ergonomic) -->
+      <div class="pointer-events-auto bg-[#e5eadf]/95 backdrop-blur-xl border border-white/80 shadow-[0_14px_40px_-5px_rgba(38,61,38,0.25)] rounded-full p-2 flex items-center gap-1.5 transition-all duration-300">
         
         <!-- Dashboard Tab -->
-        <button data-tab="dashboard" class="bottom-nav-btn flex items-center rounded-full py-2 px-3.5 bg-white text-[#263D26] shadow-sm font-semibold text-xs transition-all duration-300 ease-out" title="Dashboard">
-          <i class="fa-solid fa-chart-pie text-sm"></i>
-          <span class="bottom-nav-label ml-1.5 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-[80px] opacity-100">Dasbor</span>
+        <button data-tab="dashboard" class="bottom-nav-btn flex items-center rounded-full py-2.5 px-4 sm:px-5 bg-white text-[#263D26] shadow-sm font-semibold text-xs sm:text-sm transition-all duration-300 ease-out" title="Dashboard">
+          <i class="fa-solid fa-chart-pie text-base"></i>
+          <span class="bottom-nav-label ml-2 text-xs sm:text-sm font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-[100px] opacity-100">Dasbor</span>
         </button>
 
         <!-- Keuangan Tab -->
-        <button data-tab="finance" class="bottom-nav-btn flex items-center rounded-full py-2 px-2.5 text-slate-600 hover:text-[#263D26] text-xs transition-all duration-300 ease-out" title="Keuangan">
-          <i class="fa-solid fa-wallet text-sm"></i>
-          <span class="bottom-nav-label ml-0 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-0 opacity-0">Keuangan</span>
+        <button data-tab="finance" class="bottom-nav-btn flex items-center rounded-full py-2.5 px-3.5 sm:px-4 text-slate-600 hover:text-[#263D26] text-xs sm:text-sm transition-all duration-300 ease-out" title="Keuangan">
+          <i class="fa-solid fa-wallet text-base"></i>
+          <span class="bottom-nav-label ml-0 text-xs sm:text-sm font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-0 opacity-0">Keuangan</span>
         </button>
 
         <!-- Tugas Tab -->
-        <button data-tab="tasks" class="bottom-nav-btn flex items-center rounded-full py-2 px-2.5 text-slate-600 hover:text-[#263D26] text-xs transition-all duration-300 ease-out relative" title="Tugas & Target">
-          <i class="fa-solid fa-list-check text-sm"></i>
-          <span class="bottom-nav-label ml-0 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-0 opacity-0">Tugas</span>
-          <span id="bottomBadgeTasks" class="w-2 h-2 rounded-full bg-[#EDD330] absolute top-1.5 right-1.5 border border-white hidden"></span>
+        <button data-tab="tasks" class="bottom-nav-btn flex items-center rounded-full py-2.5 px-3.5 sm:px-4 text-slate-600 hover:text-[#263D26] text-xs sm:text-sm transition-all duration-300 ease-out relative" title="Tugas & Target">
+          <i class="fa-solid fa-list-check text-base"></i>
+          <span class="bottom-nav-label ml-0 text-xs sm:text-sm font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-0 opacity-0">Tugas</span>
+          <span id="bottomBadgeTasks" class="w-2.5 h-2.5 rounded-full bg-[#EDD330] absolute top-2 right-2 border-2 border-white hidden"></span>
         </button>
 
         <!-- Catatan Tab -->
-        <button data-tab="notes" class="bottom-nav-btn flex items-center rounded-full py-2 px-2.5 text-slate-600 hover:text-[#263D26] text-xs transition-all duration-300 ease-out" title="Catatan">
-          <i class="fa-solid fa-note-sticky text-sm"></i>
-          <span class="bottom-nav-label ml-0 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-0 opacity-0">Catatan</span>
+        <button data-tab="notes" class="bottom-nav-btn flex items-center rounded-full py-2.5 px-3.5 sm:px-4 text-slate-600 hover:text-[#263D26] text-xs sm:text-sm transition-all duration-300 ease-out" title="Catatan">
+          <i class="fa-solid fa-note-sticky text-base"></i>
+          <span class="bottom-nav-label ml-0 text-xs sm:text-sm font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-0 opacity-0">Catatan</span>
         </button>
 
       </div>
 
-      <!-- Floating Plus Button (FAB) -->
-      <button id="bottomQuickAddBtn" type="button" class="pointer-events-auto w-12 h-12 rounded-full bg-[#263D26] text-[#EDD330] hover:bg-[#1a2c1a] active:scale-90 flex items-center justify-center shadow-[0_10px_25px_rgba(38,61,38,0.35)] transition-all duration-300 flex-shrink-0 cursor-pointer" title="Entri Baru">
-        <i class="fa-solid fa-plus text-lg font-bold"></i>
+      <!-- Floating Plus Button (FAB 56x56) -->
+      <button id="bottomQuickAddBtn" type="button" class="pointer-events-auto w-14 h-14 rounded-full bg-[#263D26] text-[#EDD330] hover:bg-[#1a2c1a] active:scale-90 flex items-center justify-center shadow-[0_12px_28px_rgba(38,61,38,0.38)] transition-all duration-300 flex-shrink-0 cursor-pointer" title="Entri Baru">
+        <i class="fa-solid fa-plus text-xl font-bold"></i>
       </button>
 
     </div>
@@ -860,6 +860,6 @@
   </div>
 
   <!-- Custom JS Application Logic -->
-  <script src="app.js?v=3.2"></script>
+  <script src="app.js?v=3.3"></script>
 </body>
 </html>
