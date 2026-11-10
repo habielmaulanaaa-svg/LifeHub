@@ -175,6 +175,7 @@ function updateGreetingDisplay() {
 }
 
 function openProfileModal() {
+  closeMobileDrawer();
   const input = document.getElementById('inputProfileName');
   if (input) input.value = getUserName();
   openModal('modalProfile');
@@ -187,6 +188,35 @@ function handleProfileSubmit(e) {
   localStorage.setItem('lifehub_user_name', newName);
   closeModal('modalProfile');
   updateGreetingDisplay();
+}
+
+// Drawer helpers (dengan scroll lock layar latar & sembunyikan FAB secara halus)
+function openMobileDrawer() {
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('mobileBackdrop');
+  const bottomNav = document.getElementById('mobileBottomNav');
+  const mainEl = document.querySelector('main');
+
+  if (sidebar) sidebar.classList.remove('-translate-x-full');
+  if (backdrop) backdrop.classList.remove('hidden');
+  if (bottomNav) bottomNav.classList.add('nav-hidden');
+
+  document.body.classList.add('overflow-hidden');
+  if (mainEl) mainEl.classList.add('overflow-hidden', 'pointer-events-none');
+}
+
+function closeMobileDrawer() {
+  const sidebar = document.getElementById('sidebar');
+  const backdrop = document.getElementById('mobileBackdrop');
+  const bottomNav = document.getElementById('mobileBottomNav');
+  const mainEl = document.querySelector('main');
+
+  if (sidebar) sidebar.classList.add('-translate-x-full');
+  if (backdrop) backdrop.classList.add('hidden');
+  if (bottomNav) bottomNav.classList.remove('nav-hidden');
+
+  document.body.classList.remove('overflow-hidden');
+  if (mainEl) mainEl.classList.remove('overflow-hidden', 'pointer-events-none');
 }
 
 function initNavigation() {
@@ -211,27 +241,34 @@ function initNavigation() {
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const sidebar = document.getElementById('sidebar');
   const backdrop = document.getElementById('mobileBackdrop');
+  const closeMobileMenuBtn = document.getElementById('closeMobileMenuBtn');
 
-  if (mobileMenuBtn && sidebar && backdrop) {
-    const toggleMobileMenu = () => {
+  if (mobileMenuBtn && sidebar) {
+    mobileMenuBtn.addEventListener('click', () => {
       const isOpen = !sidebar.classList.contains('-translate-x-full');
       if (isOpen) {
-        sidebar.classList.add('-translate-x-full');
-        backdrop.classList.add('hidden');
+        closeMobileDrawer();
       } else {
-        sidebar.classList.remove('-translate-x-full');
-        backdrop.classList.remove('hidden');
+        openMobileDrawer();
       }
-    };
-
-    mobileMenuBtn.addEventListener('click', toggleMobileMenu);
-    backdrop.addEventListener('click', toggleMobileMenu);
-
-    const closeMobileMenuBtn = document.getElementById('closeMobileMenuBtn');
-    if (closeMobileMenuBtn) {
-      closeMobileMenuBtn.addEventListener('click', toggleMobileMenu);
-    }
+    });
   }
+
+  if (backdrop) {
+    backdrop.addEventListener('click', closeMobileDrawer);
+    backdrop.addEventListener('touchmove', (e) => e.preventDefault(), { passive: false });
+  }
+
+  if (closeMobileMenuBtn) {
+    closeMobileMenuBtn.addEventListener('click', closeMobileDrawer);
+  }
+
+  // Handle window resize from mobile to desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth >= 768) {
+      closeMobileDrawer();
+    }
+  });
 
   // Handle sidebar transition smooth chart update
   if (sidebar) {
@@ -293,11 +330,8 @@ function switchTab(tabId) {
   }
 
   // Close mobile drawer if opened
-  const sidebar = document.getElementById('sidebar');
-  const backdrop = document.getElementById('mobileBackdrop');
-  if (sidebar && !sidebar.classList.contains('-translate-x-full') && window.innerWidth < 768) {
-    sidebar.classList.add('-translate-x-full');
-    backdrop?.classList.add('hidden');
+  if (window.innerWidth < 768) {
+    closeMobileDrawer();
   }
 
   // Refresh tab-specific views
@@ -1031,11 +1065,24 @@ function deleteNote(id) {
 function openModal(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) modal.classList.remove('hidden');
+  document.body.classList.add('overflow-hidden');
+  const mainEl = document.querySelector('main');
+  if (mainEl) mainEl.classList.add('overflow-hidden', 'pointer-events-none');
 }
 
 function closeModal(modalId) {
   const modal = document.getElementById(modalId);
   if (modal) modal.classList.add('hidden');
+
+  // Cek apakah masih ada modal atau drawer samping yang aktif sebelum membuka kunci scroll
+  const anyModalOpen = document.querySelectorAll('#modalFinance:not(.hidden), #modalTask:not(.hidden), #modalNote:not(.hidden), #modalProfile:not(.hidden)').length > 0;
+  const isDrawerOpen = !document.getElementById('sidebar')?.classList.contains('-translate-x-full') && window.innerWidth < 768;
+
+  if (!anyModalOpen && !isDrawerOpen) {
+    document.body.classList.remove('overflow-hidden');
+    const mainEl = document.querySelector('main');
+    if (mainEl) mainEl.classList.remove('overflow-hidden', 'pointer-events-none');
+  }
 }
 
 // Close modals when clicking backdrop
