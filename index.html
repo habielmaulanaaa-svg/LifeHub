@@ -207,127 +207,140 @@
   <div id="mobileBackdrop" class="fixed inset-0 bg-slate-900/40 z-40 hidden md:hidden"></div>
 
   <!-- Main Content Area -->
-  <main class="flex-1 overflow-y-auto h-screen p-4 sm:p-6 lg:p-8 custom-scrollbar transition-all duration-300 ease-in-out">
+  <main class="flex-1 overflow-y-auto h-screen p-3.5 sm:p-6 lg:p-8 custom-scrollbar transition-all duration-300 ease-in-out">
     
     <!-- Top Greeting & Date -->
-    <header class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
+    <header class="flex items-center justify-between gap-3 mb-5 sm:mb-8">
       <div>
-        <h2 id="pageGreeting" class="text-2xl font-bold text-slate-900">Halo, Semangat Produktif! 👋</h2>
-        <p id="currentDateDisplay" class="text-xs sm:text-sm text-slate-500 mt-1">Memuat tanggal...</p>
+        <h2 id="pageGreeting" class="text-lg sm:text-2xl font-bold text-slate-900 leading-tight">Halo, Semangat Produktif! 👋</h2>
+        <p id="currentDateDisplay" class="text-xs sm:text-sm text-slate-500 mt-0.5 sm:mt-1">Memuat tanggal...</p>
       </div>
       <div class="flex items-center gap-2">
-        <button id="quickAddBtn" class="inline-flex items-center gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-xl text-sm font-medium shadow-md shadow-indigo-100 transition-all">
-          <i class="fa-solid fa-plus"></i>
+        <button id="quickAddBtn" class="inline-flex items-center gap-1.5 sm:gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium shadow-md shadow-indigo-100 transition-all flex-shrink-0">
+          <i class="fa-solid fa-plus text-xs sm:text-sm"></i>
           <span>Entri Baru</span>
         </button>
       </div>
     </header>
 
     <!-- ============================================== -->
-    <!-- TAB 1: DASHBOARD OVERVIEW -->
+    <!-- TAB 1: DASHBOARD OVERVIEW (BENTO UI) -->
     <!-- ============================================== -->
-    <section id="tab-dashboard" class="tab-content space-y-6">
-      <!-- Quick Metric Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <!-- Saldo Bersih -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm relative overflow-hidden">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-medium text-slate-500">Saldo Saat Ini</span>
-            <span class="w-8 h-8 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center">
-              <i class="fa-solid fa-wallet text-sm"></i>
+    <section id="tab-dashboard" class="tab-content space-y-3 sm:space-y-6">
+      <!-- Bento Grid Metric Cards -->
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
+        <!-- Saldo Bersih (Hero Bento Tile) -->
+        <div class="col-span-2 sm:col-span-1 lg:col-span-1 bg-gradient-to-br from-indigo-600 via-indigo-600 to-indigo-700 text-white p-4 sm:p-5 rounded-2xl shadow-md shadow-indigo-100 flex flex-col justify-between relative overflow-hidden">
+          <div class="flex items-center justify-between mb-2 sm:mb-3">
+            <span class="text-[10px] sm:text-xs font-semibold text-indigo-200 uppercase tracking-wider">Saldo Kas</span>
+            <span class="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-white/15 text-white flex items-center justify-center text-xs backdrop-blur-sm">
+              <i class="fa-solid fa-wallet"></i>
             </span>
           </div>
-          <div id="dashTotalBalance" class="text-2xl font-bold text-slate-900">Rp 0</div>
-          <p id="dashFinanceMonthlyDiff" class="text-xs text-slate-400 mt-2">Pemasukan vs Pengeluaran</p>
+          <div>
+            <div id="dashTotalBalance" class="text-xl sm:text-2xl font-black text-white tracking-tight">Rp 0</div>
+            <p id="dashFinanceMonthlyDiff" class="text-[10px] sm:text-xs text-indigo-200/80 mt-1 truncate">Pemasukan vs Pengeluaran</p>
+          </div>
         </div>
 
-        <!-- Total Pemasukan -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-medium text-slate-500">Total Pemasukan</span>
-            <span class="w-8 h-8 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center">
-              <i class="fa-solid fa-arrow-down text-sm"></i>
+        <!-- Total Pemasukan Bento Tile -->
+        <div class="col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between hover:border-emerald-200 transition-all">
+          <div class="flex items-center justify-between mb-2 sm:mb-3">
+            <span class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider truncate">Pemasukan</span>
+            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs flex-shrink-0">
+              <i class="fa-solid fa-arrow-down"></i>
             </span>
           </div>
-          <div id="dashTotalIncome" class="text-2xl font-bold text-emerald-600">+ Rp 0</div>
-          <p class="text-xs text-slate-400 mt-2">Semua pemasukan tercatat</p>
+          <div>
+            <div id="dashTotalIncome" class="text-base sm:text-xl font-bold text-emerald-600 truncate">+ Rp 0</div>
+            <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate hidden sm:block">Semua pemasukan</p>
+          </div>
         </div>
 
-        <!-- Total Pengeluaran -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-medium text-slate-500">Total Pengeluaran</span>
-            <span class="w-8 h-8 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center">
-              <i class="fa-solid fa-arrow-up text-sm"></i>
+        <!-- Total Pengeluaran Bento Tile -->
+        <div class="col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between hover:border-rose-200 transition-all">
+          <div class="flex items-center justify-between mb-2 sm:mb-3">
+            <span class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider truncate">Pengeluaran</span>
+            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-xs flex-shrink-0">
+              <i class="fa-solid fa-arrow-up"></i>
             </span>
           </div>
-          <div id="dashTotalExpense" class="text-2xl font-bold text-rose-600">- Rp 0</div>
-          <p class="text-xs text-slate-400 mt-2">Semua pengeluaran tercatat</p>
+          <div>
+            <div id="dashTotalExpense" class="text-base sm:text-xl font-bold text-rose-600 truncate">- Rp 0</div>
+            <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate hidden sm:block">Semua pengeluaran</p>
+          </div>
         </div>
 
-        <!-- Tugas Aktif -->
-        <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm">
-          <div class="flex items-center justify-between mb-3">
-            <span class="text-xs font-medium text-slate-500">Tugas Belum Selesai</span>
-            <span class="w-8 h-8 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center">
-              <i class="fa-solid fa-list-check text-sm"></i>
+        <!-- Tugas Aktif Bento Tile -->
+        <div class="col-span-2 sm:col-span-1 lg:col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between hover:border-amber-200 transition-all">
+          <div class="flex items-center justify-between mb-2 sm:mb-3">
+            <span class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider">Tugas Pending</span>
+            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-xs">
+              <i class="fa-solid fa-list-check"></i>
             </span>
           </div>
-          <div id="dashPendingTasksCount" class="text-2xl font-bold text-amber-600">0</div>
-          <p id="dashTaskCompletionRate" class="text-xs text-slate-400 mt-2">0% target tercapai</p>
+          <div class="flex items-baseline justify-between sm:block">
+            <div id="dashPendingTasksCount" class="text-base sm:text-xl font-bold text-amber-600">0</div>
+            <p id="dashTaskCompletionRate" class="text-[10px] sm:text-[11px] text-slate-400 sm:mt-0.5">0% target tercapai</p>
+          </div>
         </div>
       </div>
 
       <!-- Dashboard Middle Columns: Financial Chart & Priority Tasks -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <!-- Chart Pengeluaran -->
-        <div class="lg:col-span-2 bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
-          <div class="flex items-center justify-between mb-4">
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-6">
+        <!-- Chart Pengeluaran Bento Card -->
+        <div class="lg:col-span-2 bg-white p-4 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+          <div class="flex items-center justify-between mb-3 sm:mb-4">
             <div>
-              <h3 class="font-bold text-slate-900 text-base">Distribusi Pengeluaran</h3>
-              <p class="text-xs text-slate-400">Berdasarkan kategori transaksi pengeluaran</p>
+              <h3 class="font-bold text-slate-900 text-sm sm:text-base">Distribusi Pengeluaran</h3>
+              <p class="text-[11px] sm:text-xs text-slate-400">Kategori transaksi pengeluaran</p>
             </div>
             <button onclick="switchTab('finance')" class="text-xs text-indigo-600 font-semibold hover:underline">
-              Buka Keuangan &rarr;
+              Keuangan &rarr;
             </button>
           </div>
-          <div class="h-64 flex items-center justify-center relative">
+          <div class="h-44 sm:h-64 flex items-center justify-center relative">
             <canvas id="expenseCategoryChart"></canvas>
             <div id="chartEmptyState" class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 hidden">
-              <svg class="w-10 h-10 text-slate-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
+              <svg class="w-8 h-8 sm:w-10 sm:h-10 text-slate-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"></path></svg>
               <p class="text-xs">Belum ada data pengeluaran tercatat</p>
             </div>
           </div>
         </div>
 
-        <!-- Top Urgent Tasks -->
-        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
-          <div class="flex items-center justify-between mb-4">
+        <!-- Top Urgent Tasks Bento Card -->
+        <div class="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
+          <div class="flex items-center justify-between mb-3 sm:mb-4">
             <div>
-              <h3 class="font-bold text-slate-900 text-base">Tugas Mendesak</h3>
-              <p class="text-xs text-slate-400">Prioritas & deadline terdekat</p>
+              <h3 class="font-bold text-slate-900 text-sm sm:text-base">Tugas Mendesak</h3>
+              <p class="text-[11px] sm:text-xs text-slate-400">Prioritas & deadline terdekat</p>
             </div>
             <button onclick="switchTab('tasks')" class="text-xs text-indigo-600 font-semibold hover:underline">
               Semua &rarr;
             </button>
           </div>
-          <div id="dashUrgentTasksList" class="space-y-3 flex-1 overflow-y-auto max-h-64 custom-scrollbar">
+          <div id="dashUrgentTasksList" class="space-y-2 sm:space-y-3 flex-1 overflow-y-auto max-h-52 sm:max-h-64 custom-scrollbar">
             <!-- Dynamic Urgent Tasks -->
           </div>
         </div>
       </div>
 
-      <!-- Recent Notes Row -->
-      <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
-        <div class="flex items-center justify-between mb-4">
+      <!-- Recent Notes Bento Row -->
+      <div class="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="flex items-center justify-between mb-3 sm:mb-4">
           <div>
-            <h3 class="font-bold text-slate-900 text-base">Catatan Terbaru</h3>
-            <p class="text-xs text-slate-400">Ide dan rangkuman yang baru saja disimpan</p>
+            <h3 class="font-bold text-slate-900 text-sm sm:text-base">Catatan Terbaru</h3>
+            <p class="text-[11px] sm:text-xs text-slate-400">Ide dan rangkuman yang baru disimpan</p>
           </div>
           <button onclick="switchTab('notes')" class="text-xs text-indigo-600 font-semibold hover:underline">
-            Lihat Semua Catatan &rarr;
+            Semua &rarr;
           </button>
         </div>
+        <div id="dashRecentNotesGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-4">
+          <!-- Dynamic Recent Notes -->
+        </div>
+      </div>
+    </section>
         <div id="dashRecentNotesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <!-- Dynamic Recent Notes -->
         </div>
@@ -708,6 +721,6 @@
   </div>
 
   <!-- Custom JS Application Logic -->
-  <script src="app.js?v=2.4"></script>
+  <script src="app.js?v=2.5"></script>
 </body>
 </html>

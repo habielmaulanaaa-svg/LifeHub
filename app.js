@@ -427,17 +427,17 @@ function renderDashboardUrgentTasks(pendingTasks, totalTasks = 0) {
       : 'bg-emerald-100 text-emerald-700';
 
     html += `
-      <div class="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-100 hover:bg-slate-100/70 transition-colors">
-        <div class="flex items-center space-x-3 overflow-hidden">
-          <input type="checkbox" onchange="toggleTask('${task.id}')" class="w-4 h-4 rounded text-indigo-600 border-slate-300 focus:ring-indigo-500 cursor-pointer">
+      <div class="flex items-center justify-between p-2 sm:p-3 rounded-xl bg-slate-50 border border-slate-100/80 hover:bg-slate-100/70 transition-colors">
+        <div class="flex items-center space-x-2.5 sm:space-x-3 overflow-hidden min-w-0">
+          <input type="checkbox" onchange="toggleTask('${task.id}')" class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded text-indigo-600 border-slate-300 focus:ring-indigo-500 cursor-pointer flex-shrink-0">
           <div class="truncate">
             <p class="text-xs font-semibold text-slate-800 truncate">${escapeHtml(task.title)}</p>
-            <p class="text-[11px] text-slate-400 flex items-center gap-1 mt-0.5">
-              <i class="fa-regular fa-calendar text-[10px]"></i> ${formatDateIndo(task.dueDate)}
+            <p class="text-[10px] sm:text-[11px] text-slate-400 flex items-center gap-1 mt-0.5">
+              <i class="fa-regular fa-calendar text-[9px] sm:text-[10px]"></i> ${formatDateIndo(task.dueDate)}
             </p>
           </div>
         </div>
-        <span class="text-[10px] font-bold px-2 py-0.5 rounded-full ${badgeColor} whitespace-nowrap ml-2">
+        <span class="text-[9px] sm:text-[10px] font-bold px-2 py-0.5 rounded-full ${badgeColor} whitespace-nowrap ml-2">
           ${task.priority}
         </span>
       </div>
@@ -467,14 +467,14 @@ function renderDashboardRecentNotes(notes) {
   recent.forEach(note => {
     const colorClasses = NOTE_COLORS[note.color] || NOTE_COLORS.white;
     html += `
-      <div class="p-4 rounded-xl border ${colorClasses} hover:shadow-sm transition-all flex flex-col justify-between cursor-pointer" onclick="switchTab('notes')">
+      <div class="p-3.5 sm:p-4 rounded-xl border ${colorClasses} hover:shadow-sm transition-all flex flex-col justify-between cursor-pointer" onclick="switchTab('notes')">
         <div>
           <div class="flex justify-between items-center mb-1.5">
-            <span class="text-[10px] font-semibold text-slate-500 uppercase tracking-wider bg-white/60 px-2 py-0.5 rounded-md">${escapeHtml(note.category)}</span>
-            <span class="text-[10px] text-slate-400">${note.updatedAt || ''}</span>
+            <span class="text-[9px] sm:text-[10px] font-semibold text-slate-500 uppercase tracking-wider bg-white/60 px-2 py-0.5 rounded-md">${escapeHtml(note.category)}</span>
+            <span class="text-[9px] sm:text-[10px] text-slate-400">${note.updatedAt || ''}</span>
           </div>
-          <h4 class="text-sm font-bold text-slate-800 line-clamp-1 mb-1">${escapeHtml(note.title)}</h4>
-          <p class="text-xs text-slate-600 line-clamp-3 leading-relaxed whitespace-pre-line">${escapeHtml(note.content)}</p>
+          <h4 class="text-xs sm:text-sm font-bold text-slate-800 line-clamp-1 mb-1">${escapeHtml(note.title)}</h4>
+          <p class="text-[11px] sm:text-xs text-slate-600 line-clamp-2 sm:line-clamp-3 leading-relaxed whitespace-pre-line">${escapeHtml(note.content)}</p>
         </div>
       </div>
     `;
