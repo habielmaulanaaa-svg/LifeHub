@@ -477,7 +477,7 @@ function renderExpenseChart(finance) {
         legend: {
           position: 'right',
           labels: {
-            font: { size: 11, family: "'Plus Jakarta Sans', sans-serif" },
+            font: { size: 11, family: "'Poppins', sans-serif" },
             boxWidth: 12,
             padding: 12
           }
