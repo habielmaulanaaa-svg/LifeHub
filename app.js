@@ -190,7 +190,12 @@ let heroMorphStageTimeout = null;
 
 function initHeroGreetingAnimation() {
   const container = document.getElementById('heroBrandMorphContainer');
-  if (!container) return;
+  const greetingView = document.getElementById('heroGreetingView');
+  const brandView = document.getElementById('heroBrandView');
+  const greetingText = document.getElementById('heroGreetingText');
+  const dateText = document.getElementById('heroShortDateText');
+
+  if (!container || !greetingView || !brandView) return;
 
   if (heroCollapseTimeout) clearTimeout(heroCollapseTimeout);
   if (heroMorphStageTimeout) clearTimeout(heroMorphStageTimeout);
@@ -199,80 +204,70 @@ function initHeroGreetingAnimation() {
   const name = getUserName();
   const shortDate = getShortIndonesianDate();
 
+  if (greetingText) greetingText.textContent = `${greeting}, ${name}`;
+  if (dateText) dateText.textContent = shortDate;
+
   // Stage 1: Tampilkan sapaan personal hangat & tanggal ringkas
-  container.style.maxWidth = '260px';
+  container.style.maxWidth = '280px';
   container.style.opacity = '1';
   container.style.marginLeft = '12px';
-  container.innerHTML = `
-    <div id="heroMorphItem" class="flex flex-col transition-all duration-500 ease-out opacity-100 transform translate-x-0">
-      <span class="text-xs sm:text-sm font-bold text-white tracking-tight leading-tight drop-shadow-sm">${escapeHtml(greeting)}, ${escapeHtml(name)}</span>
-      <span class="text-[10px] sm:text-[11px] text-[#EDD330] font-medium mt-0.5 leading-none flex items-center gap-1.5 opacity-90 drop-shadow-sm">
-        <i class="fa-regular fa-calendar-days text-[9px]"></i> ${shortDate}
-      </span>
-    </div>
-  `;
 
-  // Stage 2: Setelah ~3.2 detik, berganti dengan transisi halus ke tulisan brand "LifeHub"
+  greetingView.className = 'flex flex-col justify-center transition-all duration-600 ease-out opacity-100 transform translate-y-0 whitespace-nowrap py-1';
+  brandView.className = 'absolute left-0 flex items-center transition-all duration-600 ease-out opacity-0 transform translate-y-3 pointer-events-none whitespace-nowrap py-1';
+
+  // Stage 2: Setelah ~3.2 detik, berganti dengan transisi halus ke tulisan brand "LifeHub" (tanpa tag Pro)
   heroMorphStageTimeout = setTimeout(() => {
-    const item = document.getElementById('heroMorphItem');
-    if (item) {
-      item.classList.remove('opacity-100', 'translate-x-0');
-      item.classList.add('opacity-0', '-translate-x-2');
-    }
+    // Sapaan meluncur naik sedikit dan memudar halus
+    greetingView.className = 'flex flex-col justify-center transition-all duration-600 ease-out opacity-0 transform -translate-y-3 pointer-events-none whitespace-nowrap py-1';
+    
+    // Brand LifeHub meluncur dari bawah ke tengah dan muncul tajam
+    brandView.className = 'absolute left-0 flex items-center transition-all duration-600 ease-out opacity-100 transform translate-y-0 pointer-events-auto whitespace-nowrap py-1';
 
-    setTimeout(() => {
-      container.innerHTML = `
-        <div id="heroMorphItem" class="flex items-center transition-all duration-500 ease-out opacity-0 transform translate-x-2">
-          <span class="font-brand text-lg sm:text-xl font-black tracking-tight text-white leading-none drop-shadow-sm">Life<span class="text-[#EDD330]">Hub</span></span>
-          <span class="ml-2 text-[9px] font-bold uppercase tracking-widest bg-white/15 px-1.5 py-0.5 rounded text-white/90 border border-white/10">Pro</span>
-        </div>
-      `;
-      requestAnimationFrame(() => {
-        const brandItem = document.getElementById('heroMorphItem');
-        if (brandItem) {
-          brandItem.classList.remove('opacity-0', 'translate-x-2');
-          brandItem.classList.add('opacity-100', 'translate-x-0');
-        }
-      });
-
-      // Stage 3: Setelah ~3.2 detik, menghilang secara halus ke samping logo (minimalis Image 2)
-      heroCollapseTimeout = setTimeout(() => {
-        collapseHeroBrand();
-      }, 3200);
-    }, 400);
+    // Stage 3: Setelah ~3.2 detik berikutnya, menghilang secara halus ke samping logo
+    heroCollapseTimeout = setTimeout(() => {
+      collapseHeroBrand();
+    }, 3200);
   }, 3200);
 }
 
 function collapseHeroBrand() {
   const container = document.getElementById('heroBrandMorphContainer');
+  const brandView = document.getElementById('heroBrandView');
+  const greetingView = document.getElementById('heroGreetingView');
   if (!container) return;
-  const item = document.getElementById('heroMorphItem');
-  if (item) {
-    item.classList.remove('opacity-100', 'translate-x-0');
-    item.classList.add('opacity-0', '-translate-x-2');
+
+  if (brandView) {
+    brandView.className = 'absolute left-0 flex items-center transition-all duration-500 ease-out opacity-0 transform -translate-y-2 pointer-events-none whitespace-nowrap py-1';
   }
+  if (greetingView) {
+    greetingView.className = 'flex flex-col justify-center transition-all duration-500 ease-out opacity-0 transform -translate-y-2 pointer-events-none whitespace-nowrap py-1';
+  }
+
   setTimeout(() => {
     container.style.maxWidth = '0px';
     container.style.opacity = '0';
     container.style.marginLeft = '0px';
-  }, 350);
+  }, 250);
 }
 
 function expandHeroBrand() {
   const container = document.getElementById('heroBrandMorphContainer');
-  if (!container) return;
+  const brandView = document.getElementById('heroBrandView');
+  const greetingView = document.getElementById('heroGreetingView');
+  if (!container || !brandView) return;
+
   if (heroCollapseTimeout) clearTimeout(heroCollapseTimeout);
   if (heroMorphStageTimeout) clearTimeout(heroMorphStageTimeout);
 
-  container.innerHTML = `
-    <div id="heroMorphItem" class="flex items-center transition-all duration-400 ease-out opacity-100 transform translate-x-0">
-      <span class="font-brand text-lg sm:text-xl font-black tracking-tight text-white leading-none drop-shadow-sm">Life<span class="text-[#EDD330]">Hub</span></span>
-      <span class="ml-2 text-[9px] font-bold uppercase tracking-widest bg-white/15 px-1.5 py-0.5 rounded text-white/90 border border-white/10">Pro</span>
-    </div>
-  `;
+  if (greetingView) {
+    greetingView.className = 'flex flex-col justify-center opacity-0 pointer-events-none whitespace-nowrap py-1 hidden';
+  }
+
   container.style.maxWidth = '220px';
   container.style.opacity = '1';
   container.style.marginLeft = '12px';
+
+  brandView.className = 'absolute left-0 flex items-center transition-all duration-500 ease-out opacity-100 transform translate-y-0 pointer-events-auto whitespace-nowrap py-1';
 
   heroCollapseTimeout = setTimeout(() => {
     collapseHeroBrand();

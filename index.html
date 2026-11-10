@@ -158,6 +158,12 @@
       filter: blur(32px);
       pointer-events: none;
     }
+
+    /* Silky-smooth Brand Morphing */
+    #heroBrandMorphContainer {
+      transition: max-width 0.7s cubic-bezier(0.25, 1, 0.5, 1), opacity 0.5s ease, margin-left 0.5s ease;
+      will-change: max-width, opacity, margin-left;
+    }
   </style>
 </head>
 <body class="bg-[#f9faf7] text-slate-800 min-h-screen flex flex-col md:flex-row antialiased">
@@ -338,8 +344,19 @@
             <button id="heroLogoButton" onclick="toggleHeroBrandReveal()" class="w-10 h-10 rounded-2xl bg-white/10 hover:bg-white/20 active:scale-95 backdrop-blur-md border border-white/20 text-[#EDD330] flex items-center justify-center shadow-md transition-all flex-shrink-0 cursor-pointer" title="Klik untuk tampilkan nama brand">
               <i class="fa-solid fa-shapes text-lg"></i>
             </button>
-            <div id="heroBrandMorphContainer" class="flex items-center overflow-hidden transition-all duration-500 ease-out" style="max-width: 240px;">
-              <!-- Dynamic Greeting & LifeHub diisi secara otomatis oleh JS -->
+            <div id="heroBrandMorphContainer" class="relative overflow-hidden ml-3 h-10 flex items-center" style="max-width: 280px;">
+              <!-- View 1: Dynamic Greeting & Date -->
+              <div id="heroGreetingView" class="flex flex-col justify-center transition-all duration-600 ease-out opacity-100 transform translate-y-0 whitespace-nowrap py-1">
+                <span id="heroGreetingText" class="text-xs sm:text-sm font-bold text-white tracking-tight leading-snug drop-shadow-sm">Selamat Datang</span>
+                <span class="text-[10px] sm:text-[11px] text-[#EDD330] font-medium leading-snug flex items-center gap-1.5 opacity-90 drop-shadow-sm">
+                  <i class="fa-regular fa-calendar-days text-[9px]"></i> <span id="heroShortDateText">Memuat tanggal...</span>
+                </span>
+              </div>
+
+              <!-- View 2: Brand Wordmark (Tanpa tag Pro) -->
+              <div id="heroBrandView" class="absolute left-0 flex items-center transition-all duration-600 ease-out opacity-0 transform translate-y-3 pointer-events-none whitespace-nowrap py-1">
+                <span class="font-brand text-xl sm:text-2xl font-black tracking-tight text-white leading-none drop-shadow-sm">Life<span class="text-[#EDD330]">Hub</span></span>
+              </div>
             </div>
           </div>
 
@@ -379,9 +396,6 @@
               <p class="font-semibold text-white text-xs">Dompet Pribadi</p>
               <p class="text-[10px] text-white/60">Arus Kas Terkelola</p>
             </div>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="font-mono text-[10px] text-[#EDD330] font-semibold bg-white/10 px-2 py-0.5 rounded-md border border-white/10">&bull;&bull;&bull;&bull; IDR</span>
           </div>
         </div>
 
@@ -931,6 +945,6 @@
   </div>
 
   <!-- Custom JS Application Logic -->
-  <script src="app.js?v=3.7"></script>
+  <script src="app.js?v=3.8"></script>
 </body>
 </html>
