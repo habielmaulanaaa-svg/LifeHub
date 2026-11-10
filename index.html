@@ -90,7 +90,7 @@
       <!-- Dashboard -->
       <div class="relative group/item">
         <button data-tab="dashboard" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-white bg-indigo-600 shadow-sm shadow-indigo-100">
-          <span class="w-6 flex items-center justify-center flex-shrink-0 text-base">
+          <span class="w-7 h-7 flex items-center justify-center flex-shrink-0 text-base">
             <i class="fa-solid fa-chart-pie"></i>
           </span>
           <span class="nav-label ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap flex-1 text-left">Dashboard</span>
@@ -104,7 +104,7 @@
       <!-- Keuangan -->
       <div class="relative group/item">
         <button data-tab="finance" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 hover:text-slate-900">
-          <span class="w-6 flex items-center justify-center flex-shrink-0 text-base text-emerald-500">
+          <span class="w-7 h-7 flex items-center justify-center flex-shrink-0 text-base text-emerald-500">
             <i class="fa-solid fa-wallet"></i>
           </span>
           <span class="nav-label ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap flex-1 text-left">Keuangan</span>
@@ -117,7 +117,7 @@
       <!-- Tugas & Target -->
       <div class="relative group/item">
         <button data-tab="tasks" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 hover:text-slate-900">
-          <span class="w-6 flex items-center justify-center flex-shrink-0 text-base text-amber-500">
+          <span class="w-7 h-7 flex items-center justify-center flex-shrink-0 text-base text-amber-500">
             <i class="fa-solid fa-list-check"></i>
           </span>
           <span class="nav-label ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap flex-1 text-left">Tugas & Target</span>
@@ -131,7 +131,7 @@
       <!-- Catatan -->
       <div class="relative group/item">
         <button data-tab="notes" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 hover:text-slate-900">
-          <span class="w-6 flex items-center justify-center flex-shrink-0 text-base text-sky-500">
+          <span class="w-7 h-7 flex items-center justify-center flex-shrink-0 text-base text-sky-500">
             <i class="fa-solid fa-note-sticky"></i>
           </span>
           <span class="nav-label ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap flex-1 text-left">Catatan</span>
@@ -142,43 +142,48 @@
       </div>
 
       <!-- Manajemen Data -->
-      <div class="pt-5 border-t border-slate-100/80 my-2">
-        <p class="px-2.5 text-[10px] font-semibold text-slate-400 uppercase tracking-wider mb-2 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 transition-opacity duration-200 whitespace-nowrap">Manajemen Data</p>
+      <div class="pt-4 border-t border-slate-100/80 my-2">
+        <p class="px-2.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 transition-opacity duration-200 whitespace-nowrap">Manajemen Data</p>
         
-        <div class="relative group/item">
-          <button id="btnExportData" class="w-full flex items-center px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100">
-            <span class="w-6 flex items-center justify-center flex-shrink-0 text-slate-400">
-              <i class="fa-solid fa-file-export"></i>
-            </span>
-            <span class="ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap">Ekspor Backup</span>
-          </button>
-          <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
-            Ekspor Data
+        <div class="space-y-1">
+          <!-- Ekspor Backup -->
+          <div class="relative group/item">
+            <button id="btnExportData" type="button" class="w-full flex items-center px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all text-left">
+              <span class="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0 text-slate-500 text-xs transition-colors group-hover/item:bg-slate-200">
+                <i class="fa-solid fa-file-export"></i>
+              </span>
+              <span class="ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap font-medium text-slate-700">Ekspor Backup</span>
+            </button>
+            <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+              Ekspor Data
+            </div>
           </div>
-        </div>
 
-        <div class="relative group/item">
-          <label class="w-full flex items-center px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:bg-slate-100 cursor-pointer">
-            <span class="w-6 flex items-center justify-center flex-shrink-0 text-slate-400">
-              <i class="fa-solid fa-file-import"></i>
-            </span>
-            <span class="ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap">Impor JSON</span>
-            <input type="file" id="importFileInput" accept=".json" class="hidden">
-          </label>
-          <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
-            Impor Data
+          <!-- Impor JSON -->
+          <div class="relative group/item">
+            <label class="w-full flex items-center px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all text-left cursor-pointer m-0">
+              <span class="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0 text-slate-500 text-xs transition-colors group-hover/item:bg-slate-200">
+                <i class="fa-solid fa-file-import"></i>
+              </span>
+              <span class="ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap font-medium text-slate-700">Impor JSON</span>
+              <input type="file" id="importFileInput" accept=".json" class="hidden">
+            </label>
+            <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+              Impor Data
+            </div>
           </div>
-        </div>
 
-        <div class="relative group/item">
-          <button id="btnResetData" class="w-full flex items-center px-3 py-2 rounded-xl text-xs font-medium text-rose-600 hover:bg-rose-50">
-            <span class="w-6 flex items-center justify-center flex-shrink-0 text-rose-500">
-              <i class="fa-solid fa-trash-can"></i>
-            </span>
-            <span class="ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap">Reset Data</span>
-          </button>
-          <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
-            Reset Semua Data
+          <!-- Reset Data -->
+          <div class="relative group/item">
+            <button id="btnResetData" type="button" class="w-full flex items-center px-3 py-2 rounded-xl text-xs font-medium text-rose-600 hover:bg-rose-50 transition-all text-left">
+              <span class="w-7 h-7 rounded-lg bg-rose-50 flex items-center justify-center flex-shrink-0 text-rose-500 text-xs transition-colors group-hover/item:bg-rose-100">
+                <i class="fa-solid fa-trash-can"></i>
+              </span>
+              <span class="ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap font-medium text-rose-600">Reset Data</span>
+            </button>
+            <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+              Reset Semua Data
+            </div>
           </div>
         </div>
       </div>
@@ -703,6 +708,6 @@
   </div>
 
   <!-- Custom JS Application Logic -->
-  <script src="app.js?v=2.2"></script>
+  <script src="app.js?v=2.4"></script>
 </body>
 </html>
