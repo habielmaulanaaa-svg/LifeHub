@@ -198,6 +198,15 @@ function initNavigation() {
     });
   });
 
+  // Mobile bottom nav buttons
+  const bottomNavButtons = document.querySelectorAll('.bottom-nav-btn');
+  bottomNavButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const targetTab = btn.getAttribute('data-tab');
+      switchTab(targetTab);
+    });
+  });
+
   // Mobile menu drawer
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
   const sidebar = document.getElementById('sidebar');
@@ -251,6 +260,23 @@ function switchTab(tabId) {
       btn.className = 'nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-white bg-[#263D26] shadow-sm shadow-[#263D26]/20';
     } else {
       btn.className = 'nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-[#f3f6ee] hover:text-[#263D26]';
+    }
+  });
+
+  // Update mobile bottom nav active capsule styling with smooth transition
+  document.querySelectorAll('.bottom-nav-btn').forEach(btn => {
+    const isCurrent = btn.getAttribute('data-tab') === tabId;
+    const label = btn.querySelector('.bottom-nav-label');
+    if (isCurrent) {
+      btn.className = 'bottom-nav-btn flex items-center rounded-full py-2 px-3.5 bg-white text-[#263D26] shadow-sm font-semibold text-xs transition-all duration-300 ease-out';
+      if (label) {
+        label.className = 'bottom-nav-label ml-1.5 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-[80px] opacity-100';
+      }
+    } else {
+      btn.className = 'bottom-nav-btn flex items-center rounded-full py-2 px-2.5 text-slate-600 hover:text-[#263D26] text-xs transition-all duration-300 ease-out';
+      if (label) {
+        label.className = 'bottom-nav-label ml-0 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-0 opacity-0';
+      }
     }
   });
 
@@ -310,18 +336,18 @@ function populateFinanceCategorySelect(type) {
 }
 
 function initEventListeners() {
-  // Quick Add Button
-  const quickAddBtn = document.getElementById('quickAddBtn');
-  if (quickAddBtn) {
-    quickAddBtn.addEventListener('click', () => {
-      if (activeTab === 'finance') openFinanceModal();
-      else if (activeTab === 'tasks') openTaskModal();
-      else if (activeTab === 'notes') openNoteModal();
-      else {
-        openFinanceModal();
-      }
-    });
-  }
+  // Quick Add Button (Desktop Header & Mobile Bottom FAB)
+  const triggerQuickAdd = () => {
+    if (activeTab === 'finance') openFinanceModal();
+    else if (activeTab === 'tasks') openTaskModal();
+    else if (activeTab === 'notes') openNoteModal();
+    else {
+      openFinanceModal();
+    }
+  };
+
+  document.getElementById('quickAddBtn')?.addEventListener('click', triggerQuickAdd);
+  document.getElementById('bottomQuickAddBtn')?.addEventListener('click', triggerQuickAdd);
 
   // Backup & Restore
   document.getElementById('btnExportData')?.addEventListener('click', exportData);
@@ -367,15 +393,20 @@ function renderDashboard() {
   document.getElementById('dashPendingTasksCount').textContent = pendingTasks.length;
   document.getElementById('dashTaskCompletionRate').textContent = `${completionPercentage}% target tercapai (${completedTasks.length}/${totalTasksCount})`;
 
-  // Badge sidebar
+  // Badge sidebar & mobile bottom bar
   const badgePending = document.getElementById('badgePendingTasks');
-  if (badgePending) {
-    if (pendingTasks.length > 0) {
+  const bottomBadge = document.getElementById('bottomBadgeTasks');
+  if (pendingTasks.length > 0) {
+    if (badgePending) {
       badgePending.textContent = pendingTasks.length;
       badgePending.classList.remove('hidden');
-    } else {
-      badgePending.classList.add('hidden');
     }
+    if (bottomBadge) {
+      bottomBadge.classList.remove('hidden');
+    }
+  } else {
+    badgePending?.classList.add('hidden');
+    bottomBadge?.classList.add('hidden');
   }
 
   // Dashboard Chart: Expense Breakdown

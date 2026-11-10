@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>LifeHub - Keuangan, Tugas & Catatan</title>
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -62,24 +62,77 @@
       background: #cdd6c5;
       border-radius: 4px;
     }
+
+    /* Mobile Bottom Navigation & Desktop Quick Add Transitions */
+    #mobileBottomNav {
+      bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.35s ease, visibility 0.4s;
+    }
+
+    @media (min-width: 768px) {
+      #mobileBottomNav {
+        transform: translateY(160%) scale(0.95);
+        opacity: 0;
+        pointer-events: none;
+        visibility: hidden;
+      }
+    }
+
+    @media (max-width: 767.98px) {
+      #mobileBottomNav {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+        pointer-events: auto;
+        visibility: visible;
+      }
+    }
+
+    #quickAddBtn {
+      transition: opacity 0.35s cubic-bezier(0.16, 1, 0.3, 1), transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), max-width 0.35s ease, padding 0.35s ease, margin 0.35s ease;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 767.98px) {
+      #quickAddBtn {
+        opacity: 0 !important;
+        transform: scale(0.85) !important;
+        max-width: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        pointer-events: none !important;
+        overflow: hidden !important;
+        border-width: 0 !important;
+      }
+    }
+
+    @media (min-width: 768px) {
+      #quickAddBtn {
+        opacity: 1;
+        transform: scale(1);
+        max-width: 180px;
+        pointer-events: auto;
+      }
+    }
   </style>
 </head>
 <body class="bg-[#f9faf7] text-slate-800 min-h-screen flex flex-col md:flex-row antialiased">
 
   <!-- Mobile Top Bar -->
-  <header class="md:hidden bg-white border-b border-[#e5ebdf] px-4 py-3 flex items-center justify-between sticky top-0 z-40 shadow-sm">
+  <header class="md:hidden bg-white border-b border-[#e5ebdf] px-4 py-3 flex items-center justify-between sticky top-0 z-30 shadow-sm">
     <div class="flex items-center space-x-2">
       <div class="w-9 h-9 rounded-xl bg-[#263D26] flex items-center justify-center text-[#EDD330] shadow-sm">
         <i class="fa-solid fa-shapes text-base"></i>
       </div>
       <span class="font-bold text-lg text-slate-900 tracking-tight">Life<span class="text-[#6F9435]">Hub</span></span>
     </div>
-    <button id="mobileMenuBtn" class="p-2 rounded-lg text-slate-600 hover:bg-[#f1f4ed] focus:outline-none">
+    <button id="mobileMenuBtn" class="p-2 rounded-lg text-slate-600 hover:bg-[#f1f4ed] focus:outline-none" title="Menu Akun & Data">
       <i class="fa-solid fa-bars text-xl"></i>
     </button>
   </header>
 
-  <!-- Sidebar Navigation -->
+  <!-- Sidebar Navigation (Desktop & Mobile Drawer) -->
   <aside id="sidebar" class="group/sidebar fixed md:sticky top-0 inset-y-0 left-0 z-50 w-72 md:w-20 md:hover:w-64 bg-white border-r border-[#e5ebdf] flex flex-col transform -translate-x-full md:translate-x-0 transition-all duration-300 ease-in-out md:hover:shadow-xl overflow-hidden h-screen flex-shrink-0">
     <!-- Logo & Mobile Close Header -->
     <div class="p-4 md:px-5 md:py-6 flex items-center justify-between border-b border-[#f0f4ec] overflow-hidden">
@@ -225,7 +278,7 @@
   <div id="mobileBackdrop" class="fixed inset-0 bg-slate-900/40 z-40 hidden md:hidden"></div>
 
   <!-- Main Content Area -->
-  <main class="flex-1 overflow-y-auto h-screen p-3.5 sm:p-6 lg:p-8 custom-scrollbar transition-all duration-300 ease-in-out">
+  <main class="flex-1 overflow-y-auto h-screen p-3.5 sm:p-6 lg:p-8 pb-28 md:pb-8 custom-scrollbar transition-all duration-300 ease-in-out">
     
     <!-- Top Greeting & Date -->
     <header class="flex items-center justify-between gap-3 mb-5 sm:mb-8">
@@ -234,7 +287,8 @@
         <p id="currentDateDisplay" class="text-xs sm:text-sm text-slate-500 mt-0.5 sm:mt-1">Memuat tanggal...</p>
       </div>
       <div class="flex items-center gap-2">
-        <button id="quickAddBtn" class="inline-flex items-center gap-1.5 sm:gap-2 bg-[#6F9435] hover:bg-[#5e802c] text-white px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium shadow-sm shadow-[#6F9435]/25 transition-all flex-shrink-0">
+        <!-- Desktop Quick Add Button (Smoothly hides on mobile via responsive transition) -->
+        <button id="quickAddBtn" class="items-center gap-1.5 sm:gap-2 bg-[#6F9435] hover:bg-[#5e802c] text-white px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium shadow-sm shadow-[#6F9435]/25 transition-all flex-shrink-0">
           <i class="fa-solid fa-plus text-[#EDD330] text-xs sm:text-sm"></i>
           <span>Entri Baru</span>
         </button>
@@ -571,6 +625,50 @@
   </main>
 
   <!-- ============================================== -->
+  <!-- FLOATING BOTTOM NAVIGATION (KHUSUS MOBILE/ANDROID) -->
+  <!-- ============================================== -->
+  <nav id="mobileBottomNav" class="fixed inset-x-0 z-40 flex items-center justify-center pointer-events-none px-3 sm:px-4" aria-label="Navigasi Bawah">
+    <div class="flex items-center gap-2.5 max-w-sm w-full justify-center">
+      
+      <!-- Soft Rounded Capsule Dock -->
+      <div class="pointer-events-auto bg-[#e5eadf]/95 backdrop-blur-xl border border-white/80 shadow-[0_12px_36px_-6px_rgba(38,61,38,0.22)] rounded-full p-1.5 flex items-center gap-1 transition-all duration-300">
+        
+        <!-- Dashboard Tab -->
+        <button data-tab="dashboard" class="bottom-nav-btn flex items-center rounded-full py-2 px-3.5 bg-white text-[#263D26] shadow-sm font-semibold text-xs transition-all duration-300 ease-out" title="Dashboard">
+          <i class="fa-solid fa-chart-pie text-sm"></i>
+          <span class="bottom-nav-label ml-1.5 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-[80px] opacity-100">Dasbor</span>
+        </button>
+
+        <!-- Keuangan Tab -->
+        <button data-tab="finance" class="bottom-nav-btn flex items-center rounded-full py-2 px-2.5 text-slate-600 hover:text-[#263D26] text-xs transition-all duration-300 ease-out" title="Keuangan">
+          <i class="fa-solid fa-wallet text-sm"></i>
+          <span class="bottom-nav-label ml-0 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-0 opacity-0">Keuangan</span>
+        </button>
+
+        <!-- Tugas Tab -->
+        <button data-tab="tasks" class="bottom-nav-btn flex items-center rounded-full py-2 px-2.5 text-slate-600 hover:text-[#263D26] text-xs transition-all duration-300 ease-out relative" title="Tugas & Target">
+          <i class="fa-solid fa-list-check text-sm"></i>
+          <span class="bottom-nav-label ml-0 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-0 opacity-0">Tugas</span>
+          <span id="bottomBadgeTasks" class="w-2 h-2 rounded-full bg-[#EDD330] absolute top-1.5 right-1.5 border border-white hidden"></span>
+        </button>
+
+        <!-- Catatan Tab -->
+        <button data-tab="notes" class="bottom-nav-btn flex items-center rounded-full py-2 px-2.5 text-slate-600 hover:text-[#263D26] text-xs transition-all duration-300 ease-out" title="Catatan">
+          <i class="fa-solid fa-note-sticky text-sm"></i>
+          <span class="bottom-nav-label ml-0 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-0 opacity-0">Catatan</span>
+        </button>
+
+      </div>
+
+      <!-- Floating Plus Button (FAB) -->
+      <button id="bottomQuickAddBtn" type="button" class="pointer-events-auto w-12 h-12 rounded-full bg-[#263D26] text-[#EDD330] hover:bg-[#1a2c1a] active:scale-90 flex items-center justify-center shadow-[0_10px_25px_rgba(38,61,38,0.35)] transition-all duration-300 flex-shrink-0 cursor-pointer" title="Entri Baru">
+        <i class="fa-solid fa-plus text-lg font-bold"></i>
+      </button>
+
+    </div>
+  </nav>
+
+  <!-- ============================================== -->
   <!-- MODAL: KEUANGAN (TRANSAKSI) -->
   <!-- ============================================== -->
   <div id="modalFinance" class="fixed inset-0 bg-slate-900/40 z-50 flex items-center justify-center p-4 hidden transition-opacity duration-200">
@@ -759,6 +857,6 @@
   </div>
 
   <!-- Custom JS Application Logic -->
-  <script src="app.js?v=3.0"></script>
+  <script src="app.js?v=3.1"></script>
 </body>
 </html>
