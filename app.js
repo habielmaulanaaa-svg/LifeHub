@@ -487,9 +487,12 @@ function renderDashboard() {
   });
   const balance = totalIncome - totalExpense;
 
-  document.getElementById('dashTotalBalance').textContent = formatCurrency(balance);
-  document.getElementById('dashTotalIncome').textContent = `+ ${formatCurrency(totalIncome)}`;
-  document.getElementById('dashTotalExpense').textContent = `- ${formatCurrency(totalExpense)}`;
+  const balEl = document.getElementById('dashTotalBalance');
+  if (balEl) balEl.textContent = formatCurrency(balance);
+  const incEl = document.getElementById('dashTotalIncome');
+  if (incEl) incEl.textContent = `+ ${formatCurrency(totalIncome)}`;
+  const expEl = document.getElementById('dashTotalExpense');
+  if (expEl) expEl.textContent = `- ${formatCurrency(totalExpense)}`;
 
   // Metrics: Tasks
   const pendingTasks = tasks.filter(t => !t.completed);

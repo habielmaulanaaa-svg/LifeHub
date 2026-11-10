@@ -388,51 +388,6 @@
 
       </div>
 
-      <!-- Bento Grid Metric Cards (Pemasukan, Pengeluaran, Tugas) -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-4">
-        <!-- Total Pemasukan Bento Tile -->
-        <div class="col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-[#e5ebdf] shadow-sm flex flex-col justify-between hover:border-[#6F9435]/50 transition-all">
-          <div class="flex items-center justify-between mb-2 sm:mb-3">
-            <span class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider truncate">Pemasukan</span>
-            <span class="w-7 h-7 rounded-lg bg-[#6F9435]/15 text-[#6F9435] flex items-center justify-center text-xs flex-shrink-0">
-              <i class="fa-solid fa-arrow-down"></i>
-            </span>
-          </div>
-          <div>
-            <div id="dashTotalIncome" class="text-base sm:text-xl font-bold text-[#6F9435] truncate">+ Rp 0</div>
-            <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate hidden sm:block">Semua pemasukan</p>
-          </div>
-        </div>
-
-        <!-- Total Pengeluaran Bento Tile -->
-        <div class="col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-[#e5ebdf] shadow-sm flex flex-col justify-between hover:border-rose-200 transition-all">
-          <div class="flex items-center justify-between mb-2 sm:mb-3">
-            <span class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider truncate">Pengeluaran</span>
-            <span class="w-7 h-7 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-xs flex-shrink-0">
-              <i class="fa-solid fa-arrow-up"></i>
-            </span>
-          </div>
-          <div>
-            <div id="dashTotalExpense" class="text-base sm:text-xl font-bold text-rose-600 truncate">- Rp 0</div>
-            <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate hidden sm:block">Semua pengeluaran</p>
-          </div>
-        </div>
-
-        <!-- Tugas Aktif Bento Tile -->
-        <div class="col-span-2 sm:col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-[#e5ebdf] shadow-sm flex flex-col justify-between hover:border-[#EDD330]/70 transition-all">
-          <div class="flex items-center justify-between mb-2 sm:mb-3">
-            <span class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider">Tugas Pending</span>
-            <span class="w-7 h-7 rounded-lg bg-[#EDD330]/25 text-[#736306] flex items-center justify-center text-xs">
-              <i class="fa-solid fa-list-check"></i>
-            </span>
-          </div>
-          <div class="flex items-baseline justify-between sm:block">
-            <div id="dashPendingTasksCount" class="text-base sm:text-xl font-bold text-[#736306]">0</div>
-            <p id="dashTaskCompletionRate" class="text-[10px] sm:text-[11px] text-slate-400 sm:mt-0.5">0% target tercapai</p>
-          </div>
-        </div>
-      </div>
-
       <!-- Dashboard Middle Columns: Financial Chart & Priority Tasks -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-6">
         <!-- Chart Pengeluaran Bento Card -->
@@ -459,8 +414,11 @@
         <div class="bg-white p-4 sm:p-6 rounded-2xl border border-[#e5ebdf] shadow-sm flex flex-col">
           <div class="flex items-center justify-between mb-3 sm:mb-4">
             <div>
-              <h3 class="font-bold text-slate-900 text-sm sm:text-base">Tugas Mendesak</h3>
-              <p class="text-[11px] sm:text-xs text-slate-400">Prioritas & deadline terdekat</p>
+              <div class="flex items-center gap-2">
+                <h3 class="font-bold text-slate-900 text-sm sm:text-base">Tugas Mendesak</h3>
+                <span id="dashPendingTasksCount" class="text-xs font-bold bg-[#EDD330]/25 text-[#736306] px-2 py-0.5 rounded-full">0</span>
+              </div>
+              <p id="dashTaskCompletionRate" class="text-[11px] sm:text-xs text-slate-400 mt-0.5">0% target tercapai</p>
             </div>
             <button onclick="switchTab('tasks')" class="text-xs text-[#6F9435] font-semibold hover:text-[#263D26] transition-colors">
               Semua &rarr;
@@ -932,6 +890,6 @@
   </div>
 
   <!-- Custom JS Application Logic -->
-  <script src="app.js?v=4.1"></script>
+  <script src="app.js?v=4.2"></script>
 </body>
 </html>
