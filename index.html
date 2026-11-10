@@ -12,12 +12,27 @@
       theme: {
         extend: {
           colors: {
-            brand: {
-              50: '#eef2ff',
-              100: '#e0e7ff',
-              500: '#6366f1',
-              600: '#4f46e5',
-              700: '#4338ca',
+            forest: {
+              DEFAULT: '#263D26',
+              light: '#365436',
+              dark: '#1c2e1c'
+            },
+            meadow: {
+              DEFAULT: '#6F9435',
+              hover: '#5e802c',
+              light: '#84ad3e',
+              bg: '#f2f7ec'
+            },
+            limeaccent: {
+              DEFAULT: '#A7B92A',
+              light: '#bccc38',
+              bg: '#f7fae9'
+            },
+            glow: {
+              DEFAULT: '#EDD330',
+              hover: '#dbbe21',
+              light: '#faea70',
+              bg: '#fefde8'
             }
           }
         }
@@ -31,7 +46,7 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
     body {
       font-family: 'Plus Jakarta Sans', sans-serif;
@@ -41,44 +56,44 @@
       height: 6px;
     }
     .custom-scrollbar::-webkit-scrollbar-track {
-      background: #f1f5f9;
+      background: #f1f4ed;
     }
     .custom-scrollbar::-webkit-scrollbar-thumb {
-      background: #cbd5e1;
+      background: #cdd6c5;
       border-radius: 4px;
     }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800 min-h-screen flex flex-col md:flex-row antialiased">
+<body class="bg-[#f9faf7] text-slate-800 min-h-screen flex flex-col md:flex-row antialiased">
 
   <!-- Mobile Top Bar -->
-  <header class="md:hidden bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between sticky top-0 z-40 shadow-sm">
+  <header class="md:hidden bg-white border-b border-[#e5ebdf] px-4 py-3 flex items-center justify-between sticky top-0 z-40 shadow-sm">
     <div class="flex items-center space-x-2">
-      <div class="w-9 h-9 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-indigo-200 shadow-md">
-        <i class="fa-solid fa-shapes text-lg"></i>
+      <div class="w-9 h-9 rounded-xl bg-[#263D26] flex items-center justify-center text-[#EDD330] shadow-sm">
+        <i class="fa-solid fa-shapes text-base"></i>
       </div>
-      <span class="font-bold text-lg text-slate-900 tracking-tight">Life<span class="text-indigo-600">Hub</span></span>
+      <span class="font-bold text-lg text-slate-900 tracking-tight">Life<span class="text-[#6F9435]">Hub</span></span>
     </div>
-    <button id="mobileMenuBtn" class="p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
+    <button id="mobileMenuBtn" class="p-2 rounded-lg text-slate-600 hover:bg-[#f1f4ed] focus:outline-none">
       <i class="fa-solid fa-bars text-xl"></i>
     </button>
   </header>
 
   <!-- Sidebar Navigation -->
-  <aside id="sidebar" class="group/sidebar fixed md:sticky top-0 inset-y-0 left-0 z-50 w-72 md:w-20 md:hover:w-64 bg-white border-r border-slate-200 flex flex-col transform -translate-x-full md:translate-x-0 transition-all duration-300 ease-in-out md:hover:shadow-xl overflow-hidden h-screen flex-shrink-0">
+  <aside id="sidebar" class="group/sidebar fixed md:sticky top-0 inset-y-0 left-0 z-50 w-72 md:w-20 md:hover:w-64 bg-white border-r border-[#e5ebdf] flex flex-col transform -translate-x-full md:translate-x-0 transition-all duration-300 ease-in-out md:hover:shadow-xl overflow-hidden h-screen flex-shrink-0">
     <!-- Logo & Mobile Close Header -->
-    <div class="p-4 md:px-5 md:py-6 flex items-center justify-between border-b border-slate-100 overflow-hidden">
+    <div class="p-4 md:px-5 md:py-6 flex items-center justify-between border-b border-[#f0f4ec] overflow-hidden">
       <div class="flex items-center">
-        <div class="w-10 h-10 rounded-xl bg-indigo-600 flex items-center justify-center text-white shadow-indigo-200 shadow-md flex-shrink-0 transition-transform duration-300 md:group-hover/sidebar:scale-105">
-          <i class="fa-solid fa-shapes text-xl"></i>
+        <div class="w-10 h-10 rounded-xl bg-[#263D26] flex items-center justify-center text-[#EDD330] shadow-sm flex-shrink-0 transition-transform duration-300 md:group-hover/sidebar:scale-105">
+          <i class="fa-solid fa-shapes text-lg"></i>
         </div>
         <div class="ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap overflow-hidden">
-          <h1 class="font-bold text-xl text-slate-900 tracking-tight">Life<span class="text-indigo-600">Hub</span></h1>
-          <p class="text-[11px] text-slate-400 font-medium">All-in-One Productivity</p>
+          <h1 class="font-bold text-xl text-slate-900 tracking-tight">Life<span class="text-[#6F9435]">Hub</span></h1>
+          <p class="text-[11px] text-slate-400 font-medium">Meadow Productivity</p>
         </div>
       </div>
       <!-- Close button on mobile drawer -->
-      <button id="closeMobileMenuBtn" class="md:hidden p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-slate-100 focus:outline-none">
+      <button id="closeMobileMenuBtn" class="md:hidden p-2 text-slate-400 hover:text-slate-700 rounded-lg hover:bg-[#f1f4ed] focus:outline-none">
         <i class="fa-solid fa-xmark text-lg"></i>
       </button>
     </div>
@@ -89,86 +104,86 @@
       
       <!-- Dashboard -->
       <div class="relative group/item">
-        <button data-tab="dashboard" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-white bg-indigo-600 shadow-sm shadow-indigo-100">
+        <button data-tab="dashboard" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-white bg-[#263D26] shadow-sm shadow-[#263D26]/20">
           <span class="w-7 h-7 flex items-center justify-center flex-shrink-0 text-base">
             <i class="fa-solid fa-chart-pie"></i>
           </span>
           <span class="nav-label ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap flex-1 text-left">Dashboard</span>
         </button>
         <!-- Floating Tooltip on Hover (When Collapsed on Desktop) -->
-        <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+        <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-[#263D26] text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
           Dashboard
         </div>
       </div>
 
       <!-- Keuangan -->
       <div class="relative group/item">
-        <button data-tab="finance" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 hover:text-slate-900">
-          <span class="w-7 h-7 flex items-center justify-center flex-shrink-0 text-base text-emerald-500">
+        <button data-tab="finance" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-[#f3f6ee] hover:text-[#263D26]">
+          <span class="w-7 h-7 flex items-center justify-center flex-shrink-0 text-base text-[#6F9435]">
             <i class="fa-solid fa-wallet"></i>
           </span>
           <span class="nav-label ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap flex-1 text-left">Keuangan</span>
         </button>
-        <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+        <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-[#263D26] text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
           Keuangan
         </div>
       </div>
 
       <!-- Tugas & Target -->
       <div class="relative group/item">
-        <button data-tab="tasks" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 hover:text-slate-900">
-          <span class="w-7 h-7 flex items-center justify-center flex-shrink-0 text-base text-amber-500">
+        <button data-tab="tasks" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-[#f3f6ee] hover:text-[#263D26]">
+          <span class="w-7 h-7 flex items-center justify-center flex-shrink-0 text-base text-[#A7B92A]">
             <i class="fa-solid fa-list-check"></i>
           </span>
           <span class="nav-label ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap flex-1 text-left">Tugas & Target</span>
-          <span id="badgePendingTasks" class="ml-auto bg-amber-100 text-amber-700 text-xs px-2 py-0.5 rounded-full font-semibold opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 transition-opacity duration-300 hidden">0</span>
+          <span id="badgePendingTasks" class="ml-auto bg-[#EDD330]/25 text-[#736306] text-xs px-2 py-0.5 rounded-full font-semibold opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 transition-opacity duration-300 hidden">0</span>
         </button>
-        <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+        <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-[#263D26] text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
           Tugas & Target
         </div>
       </div>
 
       <!-- Catatan -->
       <div class="relative group/item">
-        <button data-tab="notes" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 hover:text-slate-900">
-          <span class="w-7 h-7 flex items-center justify-center flex-shrink-0 text-base text-sky-500">
+        <button data-tab="notes" class="nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-[#f3f6ee] hover:text-[#263D26]">
+          <span class="w-7 h-7 flex items-center justify-center flex-shrink-0 text-base text-[#6F9435]">
             <i class="fa-solid fa-note-sticky"></i>
           </span>
           <span class="nav-label ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap flex-1 text-left">Catatan</span>
         </button>
-        <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+        <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-[#263D26] text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
           Catatan
         </div>
       </div>
 
       <!-- Manajemen Data -->
-      <div class="pt-4 border-t border-slate-100/80 my-2">
+      <div class="pt-4 border-t border-[#f0f4ec] my-2">
         <p class="px-2.5 text-[10px] font-bold text-slate-400 uppercase tracking-wider mb-2 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 transition-opacity duration-200 whitespace-nowrap">Manajemen Data</p>
         
         <div class="space-y-1">
           <!-- Ekspor Backup -->
           <div class="relative group/item">
-            <button id="btnExportData" type="button" class="w-full flex items-center px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all text-left">
-              <span class="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0 text-slate-500 text-xs transition-colors group-hover/item:bg-slate-200">
+            <button id="btnExportData" type="button" class="w-full flex items-center px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-[#f3f6ee] transition-all text-left">
+              <span class="w-7 h-7 rounded-lg bg-[#f1f4ed] flex items-center justify-center flex-shrink-0 text-slate-500 text-xs transition-colors group-hover/item:bg-[#e4ebdd]">
                 <i class="fa-solid fa-file-export"></i>
               </span>
               <span class="ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap font-medium text-slate-700">Ekspor Backup</span>
             </button>
-            <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+            <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-[#263D26] text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
               Ekspor Data
             </div>
           </div>
 
           <!-- Impor JSON -->
           <div class="relative group/item">
-            <label class="w-full flex items-center px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-slate-100 transition-all text-left cursor-pointer m-0">
-              <span class="w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center flex-shrink-0 text-slate-500 text-xs transition-colors group-hover/item:bg-slate-200">
+            <label class="w-full flex items-center px-3 py-2 rounded-xl text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-[#f3f6ee] transition-all text-left cursor-pointer m-0">
+              <span class="w-7 h-7 rounded-lg bg-[#f1f4ed] flex items-center justify-center flex-shrink-0 text-slate-500 text-xs transition-colors group-hover/item:bg-[#e4ebdd]">
                 <i class="fa-solid fa-file-import"></i>
               </span>
               <span class="ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap font-medium text-slate-700">Impor JSON</span>
               <input type="file" id="importFileInput" accept=".json" class="hidden">
             </label>
-            <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+            <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-[#263D26] text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
               Impor Data
             </div>
           </div>
@@ -181,7 +196,7 @@
               </span>
               <span class="ml-3 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap font-medium text-rose-600">Reset Data</span>
             </button>
-            <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-slate-900 text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
+            <div class="absolute left-full top-1/2 -translate-y-1/2 ml-3 px-2.5 py-1.5 bg-[#263D26] text-white text-xs font-medium rounded-lg shadow-lg pointer-events-none opacity-0 group-hover/item:opacity-100 md:group-hover/sidebar:!opacity-0 transition-opacity duration-200 whitespace-nowrap z-50 hidden md:block">
               Reset Semua Data
             </div>
           </div>
@@ -190,15 +205,15 @@
     </nav>
 
     <!-- User / App Info Footer (Klik untuk ubah nama) -->
-    <div class="p-3 border-t border-slate-100 bg-slate-50/50 overflow-hidden">
-      <button onclick="openProfileModal()" type="button" class="w-full flex items-center p-1.5 rounded-xl hover:bg-slate-200/60 transition-colors text-left group/profile" title="Klik untuk ubah nama profil">
-        <div class="w-8 h-8 rounded-full bg-indigo-100 text-indigo-700 flex items-center justify-center font-bold text-xs flex-shrink-0 shadow-inner" id="sidebarAvatarInitial">
+    <div class="p-3 border-t border-[#f0f4ec] bg-[#f9faf7]/70 overflow-hidden">
+      <button onclick="openProfileModal()" type="button" class="w-full flex items-center p-1.5 rounded-xl hover:bg-[#eef3e8] transition-colors text-left group/profile" title="Klik untuk ubah nama profil">
+        <div class="w-8 h-8 rounded-full bg-[#263D26] text-[#EDD330] flex items-center justify-center font-bold text-xs flex-shrink-0 shadow-inner" id="sidebarAvatarInitial">
           H
         </div>
         <div class="ml-2.5 opacity-100 md:opacity-0 md:group-hover/sidebar:opacity-100 translate-x-0 md:translate-x-2 md:group-hover/sidebar:translate-x-0 transition-all duration-300 whitespace-nowrap overflow-hidden flex-1 min-w-0">
           <div class="flex items-center justify-between">
             <p id="sidebarUserName" class="text-xs font-bold text-slate-800 truncate">Habil</p>
-            <i class="fa-solid fa-pen-to-square text-[10px] text-slate-400 group-hover/profile:text-indigo-600 ml-1"></i>
+            <i class="fa-solid fa-pen-to-square text-[10px] text-slate-400 group-hover/profile:text-[#6F9435] ml-1"></i>
           </div>
           <p class="text-[10px] text-slate-400 truncate">Pengaturan Akun</p>
         </div>
@@ -219,8 +234,8 @@
         <p id="currentDateDisplay" class="text-xs sm:text-sm text-slate-500 mt-0.5 sm:mt-1">Memuat tanggal...</p>
       </div>
       <div class="flex items-center gap-2">
-        <button id="quickAddBtn" class="inline-flex items-center gap-1.5 sm:gap-2 bg-indigo-600 hover:bg-indigo-700 text-white px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium shadow-md shadow-indigo-100 transition-all flex-shrink-0">
-          <i class="fa-solid fa-plus text-xs sm:text-sm"></i>
+        <button id="quickAddBtn" class="inline-flex items-center gap-1.5 sm:gap-2 bg-[#6F9435] hover:bg-[#5e802c] text-white px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium shadow-sm shadow-[#6F9435]/25 transition-all flex-shrink-0">
+          <i class="fa-solid fa-plus text-[#EDD330] text-xs sm:text-sm"></i>
           <span>Entri Baru</span>
         </button>
       </div>
@@ -233,35 +248,35 @@
       <!-- Bento Grid Metric Cards -->
       <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
         <!-- Saldo Bersih (Hero Bento Tile) -->
-        <div class="col-span-2 sm:col-span-1 lg:col-span-1 bg-gradient-to-br from-indigo-600 via-indigo-600 to-indigo-700 text-white p-4 sm:p-5 rounded-2xl shadow-md shadow-indigo-100 flex flex-col justify-between relative overflow-hidden">
+        <div class="col-span-2 sm:col-span-1 lg:col-span-1 bg-gradient-to-br from-[#263D26] via-[#2f492f] to-[#1a2c1a] text-white p-4 sm:p-5 rounded-2xl shadow-md shadow-[#263D26]/20 flex flex-col justify-between relative overflow-hidden">
           <div class="flex items-center justify-between mb-2 sm:mb-3">
-            <span class="text-[10px] sm:text-xs font-semibold text-indigo-200 uppercase tracking-wider">Saldo Kas</span>
-            <span class="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-white/15 text-white flex items-center justify-center text-xs backdrop-blur-sm">
+            <span class="text-[10px] sm:text-xs font-semibold text-[#EDD330] uppercase tracking-wider">Saldo Kas</span>
+            <span class="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-white/10 text-[#EDD330] flex items-center justify-center text-xs backdrop-blur-sm">
               <i class="fa-solid fa-wallet"></i>
             </span>
           </div>
           <div>
             <div id="dashTotalBalance" class="text-xl sm:text-2xl font-black text-white tracking-tight">Rp 0</div>
-            <p id="dashFinanceMonthlyDiff" class="text-[10px] sm:text-xs text-indigo-200/80 mt-1 truncate">Pemasukan vs Pengeluaran</p>
+            <p id="dashFinanceMonthlyDiff" class="text-[10px] sm:text-xs text-[#f4f7e6]/80 mt-1 truncate">Pemasukan vs Pengeluaran</p>
           </div>
         </div>
 
         <!-- Total Pemasukan Bento Tile -->
-        <div class="col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between hover:border-emerald-200 transition-all">
+        <div class="col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-[#e5ebdf] shadow-sm flex flex-col justify-between hover:border-[#6F9435]/50 transition-all">
           <div class="flex items-center justify-between mb-2 sm:mb-3">
             <span class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider truncate">Pemasukan</span>
-            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-emerald-50 text-emerald-600 flex items-center justify-center text-xs flex-shrink-0">
+            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#6F9435]/15 text-[#6F9435] flex items-center justify-center text-xs flex-shrink-0">
               <i class="fa-solid fa-arrow-down"></i>
             </span>
           </div>
           <div>
-            <div id="dashTotalIncome" class="text-base sm:text-xl font-bold text-emerald-600 truncate">+ Rp 0</div>
+            <div id="dashTotalIncome" class="text-base sm:text-xl font-bold text-[#6F9435] truncate">+ Rp 0</div>
             <p class="text-[10px] sm:text-[11px] text-slate-400 mt-0.5 truncate hidden sm:block">Semua pemasukan</p>
           </div>
         </div>
 
         <!-- Total Pengeluaran Bento Tile -->
-        <div class="col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between hover:border-rose-200 transition-all">
+        <div class="col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-[#e5ebdf] shadow-sm flex flex-col justify-between hover:border-rose-200 transition-all">
           <div class="flex items-center justify-between mb-2 sm:mb-3">
             <span class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider truncate">Pengeluaran</span>
             <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-xs flex-shrink-0">
@@ -275,15 +290,15 @@
         </div>
 
         <!-- Tugas Aktif Bento Tile -->
-        <div class="col-span-2 sm:col-span-1 lg:col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col justify-between hover:border-amber-200 transition-all">
+        <div class="col-span-2 sm:col-span-1 lg:col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-[#e5ebdf] shadow-sm flex flex-col justify-between hover:border-[#EDD330]/70 transition-all">
           <div class="flex items-center justify-between mb-2 sm:mb-3">
             <span class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider">Tugas Pending</span>
-            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center text-xs">
+            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#EDD330]/25 text-[#736306] flex items-center justify-center text-xs">
               <i class="fa-solid fa-list-check"></i>
             </span>
           </div>
           <div class="flex items-baseline justify-between sm:block">
-            <div id="dashPendingTasksCount" class="text-base sm:text-xl font-bold text-amber-600">0</div>
+            <div id="dashPendingTasksCount" class="text-base sm:text-xl font-bold text-[#736306]">0</div>
             <p id="dashTaskCompletionRate" class="text-[10px] sm:text-[11px] text-slate-400 sm:mt-0.5">0% target tercapai</p>
           </div>
         </div>
@@ -292,13 +307,13 @@
       <!-- Dashboard Middle Columns: Financial Chart & Priority Tasks -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-6">
         <!-- Chart Pengeluaran Bento Card -->
-        <div class="lg:col-span-2 bg-white p-4 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="lg:col-span-2 bg-white p-4 sm:p-6 rounded-2xl border border-[#e5ebdf] shadow-sm">
           <div class="flex items-center justify-between mb-3 sm:mb-4">
             <div>
               <h3 class="font-bold text-slate-900 text-sm sm:text-base">Distribusi Pengeluaran</h3>
               <p class="text-[11px] sm:text-xs text-slate-400">Kategori transaksi pengeluaran</p>
             </div>
-            <button onclick="switchTab('finance')" class="text-xs text-indigo-600 font-semibold hover:underline">
+            <button onclick="switchTab('finance')" class="text-xs text-[#6F9435] font-semibold hover:text-[#263D26] transition-colors">
               Keuangan &rarr;
             </button>
           </div>
@@ -312,13 +327,13 @@
         </div>
 
         <!-- Top Urgent Tasks Bento Card -->
-        <div class="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col">
+        <div class="bg-white p-4 sm:p-6 rounded-2xl border border-[#e5ebdf] shadow-sm flex flex-col">
           <div class="flex items-center justify-between mb-3 sm:mb-4">
             <div>
               <h3 class="font-bold text-slate-900 text-sm sm:text-base">Tugas Mendesak</h3>
               <p class="text-[11px] sm:text-xs text-slate-400">Prioritas & deadline terdekat</p>
             </div>
-            <button onclick="switchTab('tasks')" class="text-xs text-indigo-600 font-semibold hover:underline">
+            <button onclick="switchTab('tasks')" class="text-xs text-[#6F9435] font-semibold hover:text-[#263D26] transition-colors">
               Semua &rarr;
             </button>
           </div>
@@ -329,22 +344,17 @@
       </div>
 
       <!-- Recent Notes Bento Row -->
-      <div class="bg-white p-4 sm:p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+      <div class="bg-white p-4 sm:p-6 rounded-2xl border border-[#e5ebdf] shadow-sm">
         <div class="flex items-center justify-between mb-3 sm:mb-4">
           <div>
             <h3 class="font-bold text-slate-900 text-sm sm:text-base">Catatan Terbaru</h3>
             <p class="text-[11px] sm:text-xs text-slate-400">Ide dan rangkuman yang baru disimpan</p>
           </div>
-          <button onclick="switchTab('notes')" class="text-xs text-indigo-600 font-semibold hover:underline">
+          <button onclick="switchTab('notes')" class="text-xs text-[#6F9435] font-semibold hover:text-[#263D26] transition-colors">
             Semua &rarr;
           </button>
         </div>
         <div id="dashRecentNotesGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-4">
-          <!-- Dynamic Recent Notes -->
-        </div>
-      </div>
-    </section>
-        <div id="dashRecentNotesGrid" class="grid grid-cols-1 md:grid-cols-3 gap-4">
           <!-- Dynamic Recent Notes -->
         </div>
       </div>
@@ -360,35 +370,35 @@
           <h3 class="text-xl font-bold text-slate-900">Manajemen Keuangan</h3>
           <p class="text-xs sm:text-sm text-slate-500">Catat setiap pemasukan dan pengeluaran harianmu</p>
         </div>
-        <button onclick="openFinanceModal()" class="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-4 py-2 rounded-xl text-sm font-medium shadow-md shadow-emerald-100 transition-all">
-          <i class="fa-solid fa-plus"></i>
+        <button onclick="openFinanceModal()" class="inline-flex items-center gap-2 bg-[#6F9435] hover:bg-[#5e802c] text-white px-4 py-2 rounded-xl text-sm font-medium shadow-sm shadow-[#6F9435]/25 transition-all">
+          <i class="fa-solid fa-plus text-[#EDD330]"></i>
           <span>Tambah Transaksi</span>
         </button>
       </div>
 
       <!-- Cards Summary -->
       <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <div class="bg-gradient-to-br from-indigo-600 to-indigo-800 text-white p-6 rounded-2xl shadow-lg shadow-indigo-100">
-          <p class="text-xs text-indigo-200 font-medium uppercase tracking-wider">Total Saldo Bersih</p>
-          <h4 id="financeTotalBalance" class="text-3xl font-extrabold mt-2">Rp 0</h4>
-          <div class="mt-4 pt-3 border-t border-indigo-400/30 flex justify-between text-xs text-indigo-100">
+        <div class="bg-gradient-to-br from-[#263D26] via-[#2f492f] to-[#1a2c1a] text-white p-6 rounded-2xl shadow-lg shadow-[#263D26]/20">
+          <p class="text-xs text-[#EDD330] font-semibold uppercase tracking-wider">Total Saldo Bersih</p>
+          <h4 id="financeTotalBalance" class="text-3xl font-extrabold mt-2 tracking-tight">Rp 0</h4>
+          <div class="mt-4 pt-3 border-t border-white/10 flex justify-between text-xs text-[#f4f7e6]">
             <span>Status Kas</span>
-            <span id="financeHealthStatus" class="font-semibold text-emerald-300">Sehat</span>
+            <span id="financeHealthStatus" class="font-semibold text-[#EDD330]">Sehat</span>
           </div>
         </div>
 
-        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="bg-white p-6 rounded-2xl border border-[#e5ebdf] shadow-sm">
           <div class="flex items-center justify-between mb-2">
             <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Pemasukan</span>
-            <span class="w-8 h-8 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center">
+            <span class="w-8 h-8 rounded-full bg-[#6F9435]/15 text-[#6F9435] flex items-center justify-center">
               <i class="fa-solid fa-arrow-down-long"></i>
             </span>
           </div>
-          <h4 id="financeIncomeSum" class="text-2xl font-bold text-emerald-600">Rp 0</h4>
+          <h4 id="financeIncomeSum" class="text-2xl font-bold text-[#6F9435]">Rp 0</h4>
           <p id="financeIncomeCount" class="text-xs text-slate-400 mt-2">0 transaksi</p>
         </div>
 
-        <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm">
+        <div class="bg-white p-6 rounded-2xl border border-[#e5ebdf] shadow-sm">
           <div class="flex items-center justify-between mb-2">
             <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Pengeluaran</span>
             <span class="w-8 h-8 rounded-full bg-rose-50 text-rose-600 flex items-center justify-center">
@@ -401,16 +411,16 @@
       </div>
 
       <!-- Transaction Filter & History Table -->
-      <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
-        <div class="p-5 border-b border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+      <div class="bg-white rounded-2xl border border-[#e5ebdf] shadow-sm overflow-hidden">
+        <div class="p-5 border-b border-[#f0f4ec] flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <h4 class="font-bold text-slate-900 text-base">Riwayat Transaksi</h4>
           <div class="flex items-center gap-2">
-            <select id="financeFilterType" onchange="renderFinance()" class="bg-slate-50 border border-slate-200 text-xs rounded-xl px-3 py-2 text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <select id="financeFilterType" onchange="renderFinance()" class="bg-[#f9faf7] border border-[#dce3d4] text-xs rounded-xl px-3 py-2 text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
               <option value="all">Semua Jenis</option>
               <option value="income">Hanya Pemasukan</option>
               <option value="expense">Hanya Pengeluaran</option>
             </select>
-            <select id="financeFilterCategory" onchange="renderFinance()" class="bg-slate-50 border border-slate-200 text-xs rounded-xl px-3 py-2 text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <select id="financeFilterCategory" onchange="renderFinance()" class="bg-[#f9faf7] border border-[#dce3d4] text-xs rounded-xl px-3 py-2 text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
               <option value="all">Semua Kategori</option>
               <!-- Filled dynamically -->
             </select>
@@ -420,7 +430,7 @@
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse text-sm">
             <thead>
-              <tr class="bg-slate-50 text-slate-500 text-xs uppercase font-semibold border-b border-slate-200/80">
+              <tr class="bg-[#f9faf7] text-slate-500 text-xs uppercase font-semibold border-b border-[#e5ebdf]">
                 <th class="py-3.5 px-6">Tanggal</th>
                 <th class="py-3.5 px-6">Keterangan</th>
                 <th class="py-3.5 px-6">Kategori</th>
@@ -428,7 +438,7 @@
                 <th class="py-3.5 px-6 text-center">Aksi</th>
               </tr>
             </thead>
-            <tbody id="financeTableBody" class="divide-y divide-slate-100">
+            <tbody id="financeTableBody" class="divide-y divide-[#f0f4ec]">
               <!-- Dynamically populated -->
             </tbody>
           </table>
@@ -449,30 +459,30 @@
           <h3 class="text-xl font-bold text-slate-900">Pengelola Tugas (To-Do List)</h3>
           <p class="text-xs sm:text-sm text-slate-500">Organisasi target kerja, belajar, dan aktivitas harianmu</p>
         </div>
-        <button onclick="openTaskModal()" class="inline-flex items-center gap-2 bg-amber-600 hover:bg-amber-700 text-white px-4 py-2 rounded-xl text-sm font-medium shadow-md shadow-amber-100 transition-all">
-          <i class="fa-solid fa-plus"></i>
+        <button onclick="openTaskModal()" class="inline-flex items-center gap-2 bg-[#6F9435] hover:bg-[#5e802c] text-white px-4 py-2 rounded-xl text-sm font-medium shadow-sm shadow-[#6F9435]/25 transition-all">
+          <i class="fa-solid fa-plus text-[#EDD330]"></i>
           <span>Tambah Tugas</span>
         </button>
       </div>
 
       <!-- Task Progress Banner -->
-      <div class="bg-white p-5 rounded-2xl border border-slate-200/80 shadow-sm flex flex-col sm:flex-row items-center gap-4">
+      <div class="bg-white p-5 rounded-2xl border border-[#e5ebdf] shadow-sm flex flex-col sm:flex-row items-center gap-4">
         <div class="w-full sm:w-2/3">
           <div class="flex justify-between items-center mb-1.5">
             <span class="text-xs font-semibold text-slate-700">Kemajuan Tugas</span>
-            <span id="taskProgressPercentage" class="text-xs font-bold text-indigo-600">0%</span>
+            <span id="taskProgressPercentage" class="text-xs font-bold text-[#6F9435]">0%</span>
           </div>
-          <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
-            <div id="taskProgressBar" class="bg-indigo-600 h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
+          <div class="w-full bg-[#f1f4ed] h-2.5 rounded-full overflow-hidden">
+            <div id="taskProgressBar" class="bg-[#6F9435] h-2.5 rounded-full transition-all duration-300" style="width: 0%"></div>
           </div>
         </div>
-        <div class="sm:w-1/3 flex justify-around w-full border-t sm:border-t-0 sm:border-l border-slate-100 pt-3 sm:pt-0 sm:pl-4">
+        <div class="sm:w-1/3 flex justify-around w-full border-t sm:border-t-0 sm:border-l border-[#f0f4ec] pt-3 sm:pt-0 sm:pl-4">
           <div class="text-center">
-            <span id="taskCountCompleted" class="block text-lg font-bold text-emerald-600">0</span>
+            <span id="taskCountCompleted" class="block text-lg font-bold text-[#6F9435]">0</span>
             <span class="text-[11px] text-slate-400">Selesai</span>
           </div>
           <div class="text-center">
-            <span id="taskCountPending" class="block text-lg font-bold text-amber-600">0</span>
+            <span id="taskCountPending" class="block text-lg font-bold text-[#736306]">0</span>
             <span class="text-[11px] text-slate-400">Pending</span>
           </div>
           <div class="text-center">
@@ -483,17 +493,17 @@
       </div>
 
       <!-- Filters & Task List -->
-      <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden">
-        <div class="p-4 border-b border-slate-100 flex flex-wrap items-center justify-between gap-3">
+      <div class="bg-white rounded-2xl border border-[#e5ebdf] shadow-sm overflow-hidden">
+        <div class="p-4 border-b border-[#f0f4ec] flex flex-wrap items-center justify-between gap-3">
           <!-- Filter Buttons -->
-          <div class="flex items-center space-x-1.5 bg-slate-100 p-1 rounded-xl text-xs">
-            <button onclick="setTaskFilter('all')" id="taskFilterBtn-all" class="task-filter-btn px-3 py-1.5 rounded-lg font-semibold bg-white text-indigo-600 shadow-sm">Semua</button>
+          <div class="flex items-center space-x-1.5 bg-[#f1f4ed] p-1 rounded-xl text-xs">
+            <button onclick="setTaskFilter('all')" id="taskFilterBtn-all" class="task-filter-btn px-3 py-1.5 rounded-lg font-semibold bg-white text-[#263D26] shadow-sm">Semua</button>
             <button onclick="setTaskFilter('pending')" id="taskFilterBtn-pending" class="task-filter-btn px-3 py-1.5 rounded-lg font-medium text-slate-600 hover:text-slate-900">Belum Selesai</button>
             <button onclick="setTaskFilter('completed')" id="taskFilterBtn-completed" class="task-filter-btn px-3 py-1.5 rounded-lg font-medium text-slate-600 hover:text-slate-900">Selesai</button>
           </div>
 
           <!-- Priority Filter -->
-          <select id="taskPriorityFilter" onchange="renderTasks()" class="bg-slate-50 border border-slate-200 text-xs rounded-xl px-3 py-1.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <select id="taskPriorityFilter" onchange="renderTasks()" class="bg-[#f9faf7] border border-[#dce3d4] text-xs rounded-xl px-3 py-1.5 text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
             <option value="all">Semua Prioritas</option>
             <option value="Tinggi">Prioritas Tinggi</option>
             <option value="Sedang">Prioritas Sedang</option>
@@ -502,7 +512,7 @@
         </div>
 
         <!-- Task List Items -->
-        <ul id="taskListContainer" class="divide-y divide-slate-100">
+        <ul id="taskListContainer" class="divide-y divide-[#f0f4ec]">
           <!-- Dynamically populated -->
         </ul>
 
@@ -522,8 +532,8 @@
           <h3 class="text-xl font-bold text-slate-900">Buku Catatan Pribadi</h3>
           <p class="text-xs sm:text-sm text-slate-500">Simpan ide, draft, referensi, dan memo penting</p>
         </div>
-        <button onclick="openNoteModal()" class="inline-flex items-center gap-2 bg-sky-600 hover:bg-sky-700 text-white px-4 py-2 rounded-xl text-sm font-medium shadow-md shadow-sky-100 transition-all">
-          <i class="fa-solid fa-plus"></i>
+        <button onclick="openNoteModal()" class="inline-flex items-center gap-2 bg-[#6F9435] hover:bg-[#5e802c] text-white px-4 py-2 rounded-xl text-sm font-medium shadow-sm shadow-[#6F9435]/25 transition-all">
+          <i class="fa-solid fa-plus text-[#EDD330]"></i>
           <span>Catatan Baru</span>
         </button>
       </div>
@@ -532,9 +542,9 @@
       <div class="flex flex-col sm:flex-row gap-3">
         <div class="relative flex-1">
           <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
-          <input type="text" id="noteSearchInput" oninput="renderNotes()" placeholder="Cari judul atau isi catatan..." class="w-full bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-sky-500">
+          <input type="text" id="noteSearchInput" oninput="renderNotes()" placeholder="Cari judul atau isi catatan..." class="w-full bg-white border border-[#dce3d4] rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
         </div>
-        <select id="noteCategoryFilter" onchange="renderNotes()" class="bg-white border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-sky-500">
+        <select id="noteCategoryFilter" onchange="renderNotes()" class="bg-white border border-[#dce3d4] rounded-xl px-4 py-2.5 text-sm text-slate-700 focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
           <option value="all">Semua Kategori</option>
           <option value="Umum">Umum</option>
           <option value="Pekerjaan">Pekerjaan</option>
@@ -549,10 +559,10 @@
         <!-- Dynamically rendered -->
       </div>
 
-      <div id="notesEmptyState" class="bg-white p-12 text-center text-slate-400 rounded-2xl border border-slate-200/80 hidden">
+      <div id="notesEmptyState" class="bg-white p-12 text-center text-slate-400 rounded-2xl border border-[#e5ebdf] hidden">
         <svg class="w-10 h-10 text-slate-300 mb-2 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg>
         <p class="text-sm">Belum ada catatan yang ditemukan.</p>
-        <button onclick="openNoteModal()" class="mt-3 text-xs text-sky-600 font-semibold hover:underline">
+        <button onclick="openNoteModal()" class="mt-3 text-xs text-[#6F9435] font-semibold hover:underline">
           Tulis catatan pertama kamu
         </button>
       </div>
@@ -564,8 +574,8 @@
   <!-- MODAL: KEUANGAN (TRANSAKSI) -->
   <!-- ============================================== -->
   <div id="modalFinance" class="fixed inset-0 bg-slate-900/40 z-50 flex items-center justify-center p-4 hidden transition-opacity duration-200">
-    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden transform transition-all">
-      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden transform transition-all border border-[#e5ebdf]">
+      <div class="px-6 py-4 border-b border-[#f0f4ec] flex items-center justify-between">
         <h3 class="font-bold text-slate-900">Catat Transaksi Baru</h3>
         <button onclick="closeModal('modalFinance')" class="text-slate-400 hover:text-slate-600">
           <i class="fa-solid fa-xmark text-lg"></i>
@@ -576,11 +586,11 @@
         <div>
           <label class="block text-xs font-semibold text-slate-700 mb-1.5">Jenis Transaksi</label>
           <div class="grid grid-cols-2 gap-2">
-            <label class="flex items-center justify-center gap-2 p-2.5 border rounded-xl cursor-pointer has-[:checked]:border-rose-500 has-[:checked]:bg-rose-50 text-xs font-semibold text-slate-700 has-[:checked]:text-rose-700">
+            <label class="flex items-center justify-center gap-2 p-2.5 border border-[#dce3d4] rounded-xl cursor-pointer has-[:checked]:border-rose-500 has-[:checked]:bg-rose-50 text-xs font-semibold text-slate-700 has-[:checked]:text-rose-700">
               <input type="radio" name="financeType" value="expense" checked class="hidden">
               <i class="fa-solid fa-arrow-trend-down"></i> Pengeluaran
             </label>
-            <label class="flex items-center justify-center gap-2 p-2.5 border rounded-xl cursor-pointer has-[:checked]:border-emerald-500 has-[:checked]:bg-emerald-50 text-xs font-semibold text-slate-700 has-[:checked]:text-emerald-700">
+            <label class="flex items-center justify-center gap-2 p-2.5 border border-[#dce3d4] rounded-xl cursor-pointer has-[:checked]:border-[#6F9435] has-[:checked]:bg-[#6F9435]/15 text-xs font-semibold text-slate-700 has-[:checked]:text-[#3d5718]">
               <input type="radio" name="financeType" value="income" class="hidden">
               <i class="fa-solid fa-arrow-trend-up"></i> Pemasukan
             </label>
@@ -589,30 +599,30 @@
 
         <div>
           <label class="block text-xs font-semibold text-slate-700 mb-1">Nominal (Rp)</label>
-          <input type="number" id="financeAmount" required min="1" placeholder="Contoh: 50000" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <input type="number" id="financeAmount" required min="1" placeholder="Contoh: 50000" class="w-full bg-[#f9faf7] border border-[#dce3d4] rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
         </div>
 
         <div>
           <label class="block text-xs font-semibold text-slate-700 mb-1">Keterangan</label>
-          <input type="text" id="financeDesc" required placeholder="Contoh: Makan siang nasi padang" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <input type="text" id="financeDesc" required placeholder="Contoh: Makan siang nasi padang" class="w-full bg-[#f9faf7] border border-[#dce3d4] rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Kategori</label>
-            <select id="financeCategorySelect" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <select id="financeCategorySelect" class="w-full bg-[#f9faf7] border border-[#dce3d4] rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
               <!-- Dynamically populated options -->
             </select>
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Tanggal</label>
-            <input type="date" id="financeDate" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-indigo-500">
+            <input type="date" id="financeDate" required class="w-full bg-[#f9faf7] border border-[#dce3d4] rounded-xl px-3 py-1.5 text-xs focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
           </div>
         </div>
 
         <div class="pt-2 flex justify-end gap-2">
-          <button type="button" onclick="closeModal('modalFinance')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100">Batal</button>
-          <button type="submit" class="px-5 py-2 rounded-xl text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-100">Simpan Transaksi</button>
+          <button type="button" onclick="closeModal('modalFinance')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-[#f1f4ed]">Batal</button>
+          <button type="submit" class="px-5 py-2 rounded-xl text-xs font-semibold text-white bg-[#6F9435] hover:bg-[#5e802c] shadow-sm shadow-[#6F9435]/25">Simpan Transaksi</button>
         </div>
       </form>
     </div>
@@ -622,8 +632,8 @@
   <!-- MODAL: TUGAS (TASK) -->
   <!-- ============================================== -->
   <div id="modalTask" class="fixed inset-0 bg-slate-900/40 z-50 flex items-center justify-center p-4 hidden transition-opacity duration-200">
-    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden transform transition-all">
-      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-md overflow-hidden transform transition-all border border-[#e5ebdf]">
+      <div class="px-6 py-4 border-b border-[#f0f4ec] flex items-center justify-between">
         <h3 class="font-bold text-slate-900">Tambah Tugas Baru</h3>
         <button onclick="closeModal('modalTask')" class="text-slate-400 hover:text-slate-600">
           <i class="fa-solid fa-xmark text-lg"></i>
@@ -632,13 +642,13 @@
       <form id="taskForm" onsubmit="handleTaskSubmit(event)" class="p-6 space-y-4">
         <div>
           <label class="block text-xs font-semibold text-slate-700 mb-1">Judul Tugas / Rencana</label>
-          <input type="text" id="taskTitle" required placeholder="Contoh: Selesaikan laporan bulanan" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500">
+          <input type="text" id="taskTitle" required placeholder="Contoh: Selesaikan laporan bulanan" class="w-full bg-[#f9faf7] border border-[#dce3d4] rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Tingkat Prioritas</label>
-            <select id="taskPriority" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-amber-500">
+            <select id="taskPriority" class="w-full bg-[#f9faf7] border border-[#dce3d4] rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
               <option value="Tinggi">🔴 Tinggi (Mendesak)</option>
               <option value="Sedang" selected>🟡 Sedang</option>
               <option value="Rendah">🟢 Rendah</option>
@@ -646,7 +656,7 @@
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Kategori</label>
-            <select id="taskCategory" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-amber-500">
+            <select id="taskCategory" class="w-full bg-[#f9faf7] border border-[#dce3d4] rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
               <option value="Kerja">Pekerjaan</option>
               <option value="Belajar">Belajar</option>
               <option value="Pribadi">Pribadi</option>
@@ -657,12 +667,12 @@
 
         <div>
           <label class="block text-xs font-semibold text-slate-700 mb-1">Batas Waktu (Deadline)</label>
-          <input type="date" id="taskDueDate" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-amber-500">
+          <input type="date" id="taskDueDate" required class="w-full bg-[#f9faf7] border border-[#dce3d4] rounded-xl px-3.5 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
         </div>
 
         <div class="pt-2 flex justify-end gap-2">
-          <button type="button" onclick="closeModal('modalTask')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100">Batal</button>
-          <button type="submit" class="px-5 py-2 rounded-xl text-xs font-semibold text-white bg-amber-600 hover:bg-amber-700 shadow-md shadow-amber-100">Tambahkan Tugas</button>
+          <button type="button" onclick="closeModal('modalTask')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-[#f1f4ed]">Batal</button>
+          <button type="submit" class="px-5 py-2 rounded-xl text-xs font-semibold text-white bg-[#6F9435] hover:bg-[#5e802c] shadow-sm shadow-[#6F9435]/25">Tambahkan Tugas</button>
         </div>
       </form>
     </div>
@@ -672,8 +682,8 @@
   <!-- MODAL: CATATAN (NOTE) -->
   <!-- ============================================== -->
   <div id="modalNote" class="fixed inset-0 bg-slate-900/40 z-50 flex items-center justify-center p-4 hidden transition-opacity duration-200">
-    <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden transform transition-all">
-      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-lg overflow-hidden transform transition-all border border-[#e5ebdf]">
+      <div class="px-6 py-4 border-b border-[#f0f4ec] flex items-center justify-between">
         <h3 id="noteModalHeading" class="font-bold text-slate-900">Tulis Catatan Baru</h3>
         <button onclick="closeModal('modalNote')" class="text-slate-400 hover:text-slate-600">
           <i class="fa-solid fa-xmark text-lg"></i>
@@ -684,13 +694,13 @@
         
         <div>
           <label class="block text-xs font-semibold text-slate-700 mb-1">Judul Catatan</label>
-          <input type="text" id="noteTitle" required placeholder="Judul ringkasan atau topik..." class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500">
+          <input type="text" id="noteTitle" required placeholder="Judul ringkasan atau topik..." class="w-full bg-[#f9faf7] border border-[#dce3d4] rounded-xl px-3.5 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
         </div>
 
         <div class="grid grid-cols-2 gap-3">
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Kategori</label>
-            <select id="noteCategory" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-sky-500">
+            <select id="noteCategory" class="w-full bg-[#f9faf7] border border-[#dce3d4] rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
               <option value="Umum">Umum</option>
               <option value="Pekerjaan">Pekerjaan</option>
               <option value="Belajar">Belajar</option>
@@ -700,24 +710,24 @@
           </div>
           <div>
             <label class="block text-xs font-semibold text-slate-700 mb-1">Warna Kartu</label>
-            <select id="noteColor" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-sky-500">
-              <option value="white">Putih Bersih</option>
-              <option value="yellow">Kuning Lembut</option>
-              <option value="blue">Biru Muda</option>
-              <option value="green">Hijau Mint</option>
-              <option value="purple">Ungu Lavender</option>
+            <select id="noteColor" class="w-full bg-[#f9faf7] border border-[#dce3d4] rounded-xl px-3 py-2 text-xs focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
+              <option value="white">Putih Alami</option>
+              <option value="yellow">Meadow Glow (Kuning Emas)</option>
+              <option value="green">Hijau Meadow</option>
+              <option value="lime">Lime Segar</option>
+              <option value="forest">Hutan Teduh</option>
             </select>
           </div>
         </div>
 
         <div>
           <label class="block text-xs font-semibold text-slate-700 mb-1">Isi Catatan</label>
-          <textarea id="noteContent" rows="6" required placeholder="Tuliskan ide, memo, atau rangkuman di sini..." class="w-full bg-slate-50 border border-slate-200 rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-sky-500 custom-scrollbar"></textarea>
+          <textarea id="noteContent" rows="6" required placeholder="Tuliskan ide, memo, atau rangkuman di sini..." class="w-full bg-[#f9faf7] border border-[#dce3d4] rounded-xl p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#6F9435] custom-scrollbar"></textarea>
         </div>
 
         <div class="pt-2 flex justify-end gap-2">
-          <button type="button" onclick="closeModal('modalNote')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100">Batal</button>
-          <button type="submit" class="px-5 py-2 rounded-xl text-xs font-semibold text-white bg-sky-600 hover:bg-sky-700 shadow-md shadow-sky-100">Simpan Catatan</button>
+          <button type="button" onclick="closeModal('modalNote')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-[#f1f4ed]">Batal</button>
+          <button type="submit" class="px-5 py-2 rounded-xl text-xs font-semibold text-white bg-[#6F9435] hover:bg-[#5e802c] shadow-sm shadow-[#6F9435]/25">Simpan Catatan</button>
         </div>
       </form>
     </div>
@@ -727,8 +737,8 @@
   <!-- MODAL: PROFIL PENGGUNA (AKUN) -->
   <!-- ============================================== -->
   <div id="modalProfile" class="fixed inset-0 bg-slate-900/40 z-50 flex items-center justify-center p-4 hidden transition-opacity duration-200">
-    <div class="bg-white rounded-2xl shadow-xl w-full max-w-sm overflow-hidden transform transition-all">
-      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between">
+    <div class="bg-white rounded-2xl shadow-xl w-full max-w-sm overflow-hidden transform transition-all border border-[#e5ebdf]">
+      <div class="px-6 py-4 border-b border-[#f0f4ec] flex items-center justify-between">
         <h3 class="font-bold text-slate-900 text-sm">Pengaturan Akun & Nama</h3>
         <button onclick="closeModal('modalProfile')" class="text-slate-400 hover:text-slate-600">
           <i class="fa-solid fa-xmark text-lg"></i>
@@ -737,18 +747,18 @@
       <form id="profileForm" onsubmit="handleProfileSubmit(event)" class="p-6 space-y-4">
         <div>
           <label class="block text-xs font-semibold text-slate-700 mb-1.5">Nama Anda</label>
-          <input type="text" id="inputProfileName" required placeholder="Contoh: Habil" class="w-full bg-slate-50 border border-slate-200 rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <input type="text" id="inputProfileName" required placeholder="Contoh: Habil" class="w-full bg-[#f9faf7] border border-[#dce3d4] rounded-xl px-3.5 py-2.5 text-sm focus:outline-none focus:ring-2 focus:ring-[#6F9435]">
           <p class="text-[11px] text-slate-400 mt-1.5">Nama ini akan digunakan pada sapaan waktu otomatis di dasbor.</p>
         </div>
         <div class="pt-2 flex justify-end gap-2">
-          <button type="button" onclick="closeModal('modalProfile')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-slate-100">Batal</button>
-          <button type="submit" class="px-5 py-2 rounded-xl text-xs font-semibold text-white bg-indigo-600 hover:bg-indigo-700 shadow-md shadow-indigo-100">Simpan Nama</button>
+          <button type="button" onclick="closeModal('modalProfile')" class="px-4 py-2 rounded-xl text-xs font-semibold text-slate-600 hover:bg-[#f1f4ed]">Batal</button>
+          <button type="submit" class="px-5 py-2 rounded-xl text-xs font-semibold text-white bg-[#6F9435] hover:bg-[#5e802c] shadow-sm shadow-[#6F9435]/25">Simpan Nama</button>
         </div>
       </form>
     </div>
   </div>
 
   <!-- Custom JS Application Logic -->
-  <script src="app.js?v=2.7"></script>
+  <script src="app.js?v=3.0"></script>
 </body>
 </html>

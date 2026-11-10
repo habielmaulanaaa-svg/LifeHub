@@ -2,6 +2,7 @@
  * LifeHub - All-in-One Productivity & Finance Manager
  * Features: Keuangan (Finance Tracker), Tugas (To-Do List), Catatan (Notes)
  * Storage: HTML5 localStorage
+ * Theme: Meadow Glow (#263D26, #6F9435, #A7B92A, #EDD330)
  */
 
 // ==========================================
@@ -21,11 +22,15 @@ if (!localStorage.getItem('lifehub_v2_clean_start')) {
 }
 
 const NOTE_COLORS = {
-  white: 'bg-white border-slate-200',
-  yellow: 'bg-amber-50/70 border-amber-200',
-  blue: 'bg-sky-50/70 border-sky-200',
-  green: 'bg-emerald-50/70 border-emerald-200',
-  purple: 'bg-purple-50/70 border-purple-200'
+  white: 'bg-white border-[#dce3d4] text-slate-800',
+  yellow: 'bg-[#EDD330]/20 border-[#EDD330]/60 text-slate-900',
+  green: 'bg-[#6F9435]/15 border-[#6F9435]/40 text-slate-900',
+  lime: 'bg-[#A7B92A]/20 border-[#A7B92A]/50 text-slate-900',
+  forest: 'bg-[#263D26]/10 border-[#263D26]/30 text-slate-900',
+  // Legacy backward-compatibility
+  glow: 'bg-[#EDD330]/20 border-[#EDD330]/60 text-slate-900',
+  blue: 'bg-[#A7B92A]/20 border-[#A7B92A]/50 text-slate-900',
+  purple: 'bg-[#EDD330]/20 border-[#EDD330]/60 text-slate-900'
 };
 
 const SEED_DATA = {
@@ -135,7 +140,7 @@ function getWIBGreeting() {
 
   // Aturan waktu WIB:
   // - 12 malam hingga pukul 8 (00:00 - 08:59): Selamat Pagi
-  // - Pukul 9 hingga 11:59: Selamat Siang
+  // - Pukul 9 hingga 11:59 (09:00 - 11:59): Selamat Siang
   // - Pukul 12 hingga 4 sore (12:00 - 16:59): Selamat Sore
   // - Jam 5 sore hingga 12 malam (17:00 - 23:59): Selamat Malam
   if (hour >= 0 && hour < 9) {
@@ -239,13 +244,13 @@ function switchTab(tabId) {
   const activeSection = document.getElementById(`tab-${tabId}`);
   if (activeSection) activeSection.classList.remove('hidden');
 
-  // Update sidebar active buttons styling
+  // Update sidebar active buttons styling with Meadow Glow (#263D26)
   document.querySelectorAll('.nav-btn').forEach(btn => {
     const isCurrent = btn.getAttribute('data-tab') === tabId;
     if (isCurrent) {
-      btn.className = 'nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-white bg-indigo-600 shadow-sm shadow-indigo-100';
+      btn.className = 'nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-white bg-[#263D26] shadow-sm shadow-[#263D26]/20';
     } else {
-      btn.className = 'nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-slate-100 hover:text-slate-900';
+      btn.className = 'nav-btn w-full flex items-center px-3 py-2.5 rounded-xl text-sm font-medium transition-all text-slate-600 hover:bg-[#f3f6ee] hover:text-[#263D26]';
     }
   });
 
@@ -313,7 +318,6 @@ function initEventListeners() {
       else if (activeTab === 'tasks') openTaskModal();
       else if (activeTab === 'notes') openNoteModal();
       else {
-        // From Dashboard, prompt which one to add
         openFinanceModal();
       }
     });
@@ -412,9 +416,10 @@ function renderExpenseChart(finance) {
   const labels = Object.keys(categoryTotals);
   const data = Object.values(categoryTotals);
 
+  // Meadow Glow harmonious color palette
   const colors = [
-    '#f43f5e', '#fb923c', '#fbbf24', '#34d399', 
-    '#38bdf8', '#818cf8', '#c084fc', '#94a3b8'
+    '#263D26', '#6F9435', '#A7B92A', '#EDD330', 
+    '#3b5c3b', '#85ad42', '#c2d43a', '#e8b923'
   ];
 
   if (expenseChartInstance) {
@@ -466,7 +471,7 @@ function renderDashboardUrgentTasks(pendingTasks, totalTasks = 0) {
 
   if (pendingTasks.length === 0) {
     const iconSvg = totalTasks > 0
-      ? `<svg class="w-10 h-10 text-emerald-500 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`
+      ? `<svg class="w-10 h-10 text-[#6F9435] mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>`
       : `<svg class="w-10 h-10 text-slate-300 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"></path></svg>`;
 
     container.innerHTML = `
@@ -491,13 +496,13 @@ function renderDashboardUrgentTasks(pendingTasks, totalTasks = 0) {
     const badgeColor = task.priority === 'Tinggi' 
       ? 'bg-rose-100 text-rose-700' 
       : task.priority === 'Sedang' 
-      ? 'bg-amber-100 text-amber-700' 
-      : 'bg-emerald-100 text-emerald-700';
+      ? 'bg-[#EDD330]/25 text-[#736306]' 
+      : 'bg-[#6F9435]/15 text-[#5e802c]';
 
     html += `
-      <div class="flex items-center justify-between p-2 sm:p-3 rounded-xl bg-slate-50 border border-slate-100/80 hover:bg-slate-100/70 transition-colors">
+      <div class="flex items-center justify-between p-2 sm:p-3 rounded-xl bg-[#f9faf7] border border-[#e5ebdf] hover:bg-[#f1f4ed] transition-colors">
         <div class="flex items-center space-x-2.5 sm:space-x-3 overflow-hidden min-w-0">
-          <input type="checkbox" onchange="toggleTask('${task.id}')" class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded text-indigo-600 border-slate-300 focus:ring-indigo-500 cursor-pointer flex-shrink-0">
+          <input type="checkbox" onchange="toggleTask('${task.id}')" class="w-3.5 h-3.5 sm:w-4 sm:h-4 rounded text-[#6F9435] border-slate-300 focus:ring-[#6F9435] cursor-pointer flex-shrink-0">
           <div class="truncate">
             <p class="text-xs font-semibold text-slate-800 truncate">${escapeHtml(task.title)}</p>
             <p class="text-[10px] sm:text-[11px] text-slate-400 flex items-center gap-1 mt-0.5">
@@ -538,7 +543,7 @@ function renderDashboardRecentNotes(notes) {
       <div class="p-3.5 sm:p-4 rounded-xl border ${colorClasses} hover:shadow-sm transition-all flex flex-col justify-between cursor-pointer" onclick="switchTab('notes')">
         <div>
           <div class="flex justify-between items-center mb-1.5">
-            <span class="text-[9px] sm:text-[10px] font-semibold text-slate-500 uppercase tracking-wider bg-white/60 px-2 py-0.5 rounded-md">${escapeHtml(note.category)}</span>
+            <span class="text-[9px] sm:text-[10px] font-semibold text-slate-600 uppercase tracking-wider bg-white/70 px-2 py-0.5 rounded-md border border-slate-200/40">${escapeHtml(note.category)}</span>
             <span class="text-[9px] sm:text-[10px] text-slate-400">${note.updatedAt || ''}</span>
           </div>
           <h4 class="text-xs sm:text-sm font-bold text-slate-800 line-clamp-1 mb-1">${escapeHtml(note.title)}</h4>
@@ -590,10 +595,10 @@ function renderFinance() {
   if (healthStatusEl) {
     if (netBalance > 0) {
       healthStatusEl.textContent = 'Surplus (Aman)';
-      healthStatusEl.className = 'font-semibold text-emerald-300';
+      healthStatusEl.className = 'font-semibold text-[#EDD330]';
     } else if (netBalance === 0) {
       healthStatusEl.textContent = 'Imbang';
-      healthStatusEl.className = 'font-semibold text-amber-200';
+      healthStatusEl.className = 'font-semibold text-[#A7B92A]';
     } else {
       healthStatusEl.textContent = 'Defisit (Hati-hati)';
       healthStatusEl.className = 'font-semibold text-rose-300';
@@ -624,14 +629,14 @@ function renderFinance() {
   let rowsHtml = '';
   filtered.forEach(item => {
     const isIncome = item.type === 'income';
-    const amountColor = isIncome ? 'text-emerald-600' : 'text-rose-600';
+    const amountColor = isIncome ? 'text-[#6F9435]' : 'text-rose-600';
     const amountSign = isIncome ? '+' : '-';
     const badgeType = isIncome 
-      ? '<span class="bg-emerald-50 text-emerald-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">Pemasukan</span>' 
+      ? '<span class="bg-[#6F9435]/15 text-[#5e802c] text-[10px] font-semibold px-2 py-0.5 rounded-full">Pemasukan</span>' 
       : '<span class="bg-rose-50 text-rose-700 text-[10px] font-semibold px-2 py-0.5 rounded-full">Pengeluaran</span>';
 
     rowsHtml += `
-      <tr class="hover:bg-slate-50 transition-colors">
+      <tr class="hover:bg-[#f9faf7] transition-colors">
         <td class="py-3 px-6 text-xs text-slate-500 whitespace-nowrap">${formatDateIndo(item.date)}</td>
         <td class="py-3 px-6 font-medium text-slate-800">
           <div class="flex items-center gap-2">
@@ -640,7 +645,7 @@ function renderFinance() {
           </div>
         </td>
         <td class="py-3 px-6 text-xs text-slate-600">
-          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-slate-100 text-slate-700 text-xs">
+          <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-[#f1f4ed] text-slate-700 text-xs">
             <i class="fa-solid fa-tag text-[10px] text-slate-400"></i> ${escapeHtml(item.category)}
           </span>
         </td>
@@ -746,20 +751,20 @@ function renderTasks() {
     const badgeColor = task.priority === 'Tinggi' 
       ? 'bg-rose-100 text-rose-700' 
       : task.priority === 'Sedang' 
-      ? 'bg-amber-100 text-amber-700' 
-      : 'bg-emerald-100 text-emerald-700';
+      ? 'bg-[#EDD330]/25 text-[#736306]' 
+      : 'bg-[#6F9435]/15 text-[#5e802c]';
 
     html += `
-      <li class="p-4 flex items-center justify-between hover:bg-slate-50 transition-colors gap-3">
+      <li class="p-4 flex items-center justify-between hover:bg-[#f9faf7] transition-colors gap-3">
         <div class="flex items-center space-x-3 flex-1 min-w-0">
-          <input type="checkbox" onchange="toggleTask('${task.id}')" ${isDone ? 'checked' : ''} class="w-4 h-4 rounded text-indigo-600 border-slate-300 focus:ring-indigo-500 cursor-pointer">
+          <input type="checkbox" onchange="toggleTask('${task.id}')" ${isDone ? 'checked' : ''} class="w-4 h-4 rounded text-[#6F9435] border-slate-300 focus:ring-[#6F9435] cursor-pointer">
           <div class="min-w-0">
             <p class="text-sm font-medium ${textStyle} truncate">${escapeHtml(task.title)}</p>
             <div class="flex items-center gap-2 mt-1 flex-wrap">
               <span class="text-[10px] text-slate-400 flex items-center gap-1">
                 <i class="fa-regular fa-calendar text-[9px]"></i> ${formatDateIndo(task.dueDate)}
               </span>
-              <span class="text-[10px] text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
+              <span class="text-[10px] text-slate-600 bg-[#f1f4ed] px-2 py-0.5 rounded">
                 ${escapeHtml(task.category)}
               </span>
             </div>
@@ -788,7 +793,7 @@ function setTaskFilter(filter) {
   });
   const currentBtn = document.getElementById(`taskFilterBtn-${filter}`);
   if (currentBtn) {
-    currentBtn.className = 'task-filter-btn px-3 py-1.5 rounded-lg font-semibold bg-white text-indigo-600 shadow-sm';
+    currentBtn.className = 'task-filter-btn px-3 py-1.5 rounded-lg font-semibold bg-white text-[#263D26] shadow-sm';
   }
   renderTasks();
 }
@@ -883,7 +888,7 @@ function renderNotes() {
               ${escapeHtml(note.category)}
             </span>
             <div class="flex items-center gap-1 opacity-80 group-hover:opacity-100 transition-opacity">
-              <button onclick="editNote('${note.id}')" class="p-1.5 text-slate-400 hover:text-sky-600 rounded-lg hover:bg-white/80" title="Edit catatan">
+              <button onclick="editNote('${note.id}')" class="p-1.5 text-slate-400 hover:text-[#6F9435] rounded-lg hover:bg-white/80" title="Edit catatan">
                 <i class="fa-regular fa-pen-to-square text-xs"></i>
               </button>
               <button onclick="deleteNote('${note.id}')" class="p-1.5 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-white/80" title="Hapus catatan">
