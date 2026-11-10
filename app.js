@@ -144,6 +144,11 @@ function initNavigation() {
 
     mobileMenuBtn.addEventListener('click', toggleMobileMenu);
     backdrop.addEventListener('click', toggleMobileMenu);
+
+    const closeMobileMenuBtn = document.getElementById('closeMobileMenuBtn');
+    if (closeMobileMenuBtn) {
+      closeMobileMenuBtn.addEventListener('click', toggleMobileMenu);
+    }
   }
 
   // Handle sidebar transition smooth chart update
@@ -394,7 +399,7 @@ function renderDashboardUrgentTasks(pendingTasks, totalTasks = 0) {
   if (pendingTasks.length === 0) {
     container.innerHTML = `
       <div class="h-40 flex flex-col items-center justify-center text-slate-400">
-        <i class="fa-regular ${totalTasks > 0 ? 'fa-circle-check text-emerald-400' : 'fa-clipboard-list text-slate-300'} text-3xl mb-2"></i>
+        <i class="fa-solid ${totalTasks > 0 ? 'fa-circle-check text-emerald-400' : 'fa-list-check text-slate-300'} text-3xl mb-2"></i>
         <p class="text-xs">${totalTasks > 0 ? 'Hebat! Semua tugas telah selesai.' : 'Belum ada tugas tercatat.'}</p>
       </div>
     `;
