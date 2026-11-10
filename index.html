@@ -330,18 +330,18 @@
     <section id="tab-dashboard" class="tab-content space-y-3 sm:space-y-5">
       
       <!-- Grand Hero Balance Card (Image 2 Style dengan Gradasi Meadow Glow) -->
-      <div class="meadow-hero-card w-full rounded-3xl p-5 sm:p-7 text-white shadow-xl shadow-[#263D26]/20 relative">
+      <div class="meadow-hero-card w-full rounded-2xl sm:rounded-3xl p-4 sm:p-5 lg:p-6 text-white shadow-lg shadow-[#263D26]/20 relative">
         
         <!-- Top Bar inside Hero (Logo + Morphing Greeting/LifeHub & 3-Strip Menu Button) -->
-        <div class="flex items-center justify-between relative z-10 mb-6 sm:mb-8">
+        <div class="flex items-center justify-between relative z-10 mb-4 sm:mb-5">
           <!-- Left: Logo & Morphing Brand/Greeting -->
           <div class="flex items-center">
-            <div id="heroLogoBadge" class="w-10 h-10 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-[#EDD330] flex items-center justify-center shadow-md flex-shrink-0">
-              <i class="fa-solid fa-shapes text-lg"></i>
+            <div id="heroLogoBadge" class="w-9 h-9 sm:w-10 sm:h-10 rounded-2xl bg-white/10 backdrop-blur-md border border-white/20 text-[#EDD330] flex items-center justify-center shadow-md flex-shrink-0">
+              <i class="fa-solid fa-shapes text-base sm:text-lg"></i>
             </div>
-            <div id="heroBrandMorphContainer" class="relative overflow-hidden ml-3 h-10 flex items-center min-w-[140px]">
+            <div id="heroBrandMorphContainer" class="relative overflow-hidden ml-2.5 sm:ml-3 h-10 flex items-center min-w-[130px]">
               <!-- View 1: Dynamic Greeting & Date (Muncul pertama kali secara halus, lalu Fade Out) -->
-              <div id="heroGreetingView" class="flex flex-col justify-center transition-opacity duration-700 ease-in-out opacity-0 whitespace-nowrap py-1">
+              <div id="heroGreetingView" class="flex flex-col justify-center transition-opacity duration-700 ease-in-out opacity-0 whitespace-nowrap py-0.5">
                 <span id="heroGreetingText" class="text-xs sm:text-sm font-bold text-white tracking-tight leading-snug drop-shadow-sm">Selamat Datang</span>
                 <span class="text-[10px] sm:text-[11px] text-[#EDD330] font-medium leading-snug flex items-center gap-1.5 opacity-90 drop-shadow-sm">
                   <i class="fa-regular fa-calendar-days text-[9px]"></i> <span id="heroShortDateText">Memuat tanggal...</span>
@@ -349,8 +349,8 @@
               </div>
 
               <!-- View 2: Brand Wordmark (Fade In setelah sapaan, lalu TAMPIL PERMANEN) -->
-              <div id="heroBrandView" class="absolute left-0 flex items-center transition-opacity duration-700 ease-in-out opacity-0 pointer-events-none whitespace-nowrap py-1">
-                <span class="font-brand text-xl sm:text-2xl font-black tracking-tight text-white leading-none drop-shadow-sm">Life<span class="text-[#EDD330]">Hub</span></span>
+              <div id="heroBrandView" class="absolute left-0 flex items-center transition-opacity duration-700 ease-in-out opacity-0 pointer-events-none whitespace-nowrap py-0.5">
+                <span class="font-brand text-lg sm:text-xl font-black tracking-tight text-white leading-none drop-shadow-sm">Life<span class="text-[#EDD330]">Hub</span></span>
               </div>
             </div>
           </div>
@@ -358,39 +358,31 @@
           <!-- Right: Desktop Quick Add & Mobile 3-Strip Menu Button -->
           <div class="flex items-center gap-2">
             <!-- Desktop Quick Add Button -->
-            <button id="quickAddBtn" class="hidden md:inline-flex items-center gap-2 bg-[#6F9435] hover:bg-[#5e802c] text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold shadow-md shadow-black/20 transition-all flex-shrink-0">
-              <i class="fa-solid fa-plus text-[#EDD330] text-xs sm:text-sm"></i>
+            <button id="quickAddBtn" class="hidden md:inline-flex items-center gap-2 bg-[#6F9435] hover:bg-[#5e802c] text-white px-3.5 py-1.5 rounded-xl text-xs sm:text-sm font-semibold shadow-md shadow-black/20 transition-all flex-shrink-0">
+              <i class="fa-solid fa-plus text-[#EDD330] text-xs"></i>
               <span>Entri Baru</span>
             </button>
 
             <!-- Mobile 3-Strip Hamburger Menu Button (Menuju ke Side Navigasi) -->
-            <button id="heroMobileMenuBtn" type="button" class="md:hidden w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white backdrop-blur-md border border-white/20 flex items-center justify-center shadow-md transition-all focus:outline-none" title="Menu Navigasi">
-              <i class="fa-solid fa-bars text-base"></i>
+            <button id="heroMobileMenuBtn" type="button" class="md:hidden w-9 h-9 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white backdrop-blur-md border border-white/20 flex items-center justify-center shadow-md transition-all focus:outline-none" title="Menu Navigasi">
+              <i class="fa-solid fa-bars text-sm"></i>
             </button>
           </div>
         </div>
 
-        <!-- Center: Hero Balance Display -->
-        <div class="relative z-10">
-          <span class="text-xs sm:text-sm font-medium text-white/70 uppercase tracking-wider block">Saldo Kas Utama</span>
-          <div id="dashTotalBalance" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mt-1 mb-2.5 drop-shadow-sm">Rp 0</div>
-          
-          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs text-white/90">
-            <span class="w-2 h-2 rounded-full bg-[#EDD330] animate-pulse"></span>
-            <span id="dashFinanceMonthlyDiff" class="font-medium">Pemasukan vs Pengeluaran</span>
-          </div>
+        <!-- Center: Hero Balance Display (Besar, Bold, Bersih) -->
+        <div class="relative z-10 my-1">
+          <span class="text-[11px] sm:text-xs font-medium text-white/70 uppercase tracking-wider block">Saldo Kas Utama</span>
+          <div id="dashTotalBalance" class="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight mt-0.5 drop-shadow-sm">Rp 0</div>
         </div>
 
-        <!-- Glassmorphic Card Strip (Image 2 Card Layer) -->
-        <div class="relative z-10 mt-5 pt-3.5 border-t border-white/10 flex items-center justify-between text-xs text-white/90">
-          <div class="flex items-center gap-2.5">
-            <span class="w-7 h-7 rounded-lg bg-white/10 text-[#EDD330] flex items-center justify-center text-xs">
+        <!-- Glassmorphic Card Strip (Dompet Pribadi Bersih & Rapi) -->
+        <div class="relative z-10 mt-3 pt-2.5 border-t border-white/10 flex items-center justify-between text-xs text-white/90">
+          <div class="flex items-center gap-2">
+            <span class="w-6 h-6 rounded-lg bg-white/10 text-[#EDD330] flex items-center justify-center text-[11px]">
               <i class="fa-solid fa-wallet"></i>
             </span>
-            <div>
-              <p class="font-semibold text-white text-xs">Dompet Pribadi</p>
-              <p class="text-[10px] text-white/60">Arus Kas Terkelola</p>
-            </div>
+            <span class="font-semibold text-white text-xs">Dompet Pribadi</span>
           </div>
         </div>
 
@@ -940,6 +932,6 @@
   </div>
 
   <!-- Custom JS Application Logic -->
-  <script src="app.js?v=3.9"></script>
+  <script src="app.js?v=4.0"></script>
 </body>
 </html>

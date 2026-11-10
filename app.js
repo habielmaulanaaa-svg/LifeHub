@@ -491,18 +491,6 @@ function renderDashboard() {
   document.getElementById('dashTotalIncome').textContent = `+ ${formatCurrency(totalIncome)}`;
   document.getElementById('dashTotalExpense').textContent = `- ${formatCurrency(totalExpense)}`;
 
-  // Status Pill Indikator Saldo Hero (Image 2 Style)
-  const diffEl = document.getElementById('dashFinanceMonthlyDiff');
-  if (diffEl) {
-    if (balance > 0) {
-      diffEl.innerHTML = `<i class="fa-solid fa-arrow-trend-up text-[#EDD330] mr-1"></i>+${formatCurrency(balance)} Surplus Terkelola`;
-    } else if (balance < 0) {
-      diffEl.innerHTML = `<i class="fa-solid fa-arrow-trend-down text-rose-300 mr-1"></i>-${formatCurrency(Math.abs(balance))} Defisit Kas`;
-    } else {
-      diffEl.innerHTML = `<i class="fa-solid fa-check text-[#EDD330] mr-1"></i>Arus Kas Seimbang`;
-    }
-  }
-
   // Metrics: Tasks
   const pendingTasks = tasks.filter(t => !t.completed);
   const completedTasks = tasks.filter(t => t.completed);
