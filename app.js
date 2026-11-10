@@ -300,17 +300,17 @@ function switchTab(tabId) {
     }
   });
 
-  // Update mobile bottom nav active capsule styling with smooth transition (compact balanced size)
+  // Update mobile bottom nav active capsule styling with smooth transition (wider balanced size)
   document.querySelectorAll('.bottom-nav-btn').forEach(btn => {
     const isCurrent = btn.getAttribute('data-tab') === tabId;
     const label = btn.querySelector('.bottom-nav-label');
     if (isCurrent) {
-      btn.className = 'bottom-nav-btn flex items-center rounded-full py-2 px-3.5 bg-white text-[#263D26] shadow-sm font-semibold text-xs transition-all duration-300 ease-out';
+      btn.className = 'bottom-nav-btn flex items-center rounded-full py-2 px-4 bg-white text-[#263D26] shadow-sm font-semibold text-xs transition-all duration-300 ease-out';
       if (label) {
-        label.className = 'bottom-nav-label ml-1.5 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-[85px] opacity-100';
+        label.className = 'bottom-nav-label ml-1.5 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-[90px] opacity-100';
       }
     } else {
-      btn.className = 'bottom-nav-btn flex items-center rounded-full py-2 px-3 text-slate-600 hover:text-[#263D26] text-xs transition-all duration-300 ease-out';
+      btn.className = 'bottom-nav-btn flex items-center rounded-full py-2 px-3.5 text-slate-600 hover:text-[#263D26] text-xs transition-all duration-300 ease-out';
       if (label) {
         label.className = 'bottom-nav-label ml-0 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-0 opacity-0';
       }

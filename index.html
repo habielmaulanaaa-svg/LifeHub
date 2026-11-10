@@ -637,33 +637,33 @@
   <!-- ============================================== -->
   <!-- FLOATING BOTTOM NAVIGATION (KHUSUS MOBILE/ANDROID) -->
   <!-- ============================================== -->
-  <nav id="mobileBottomNav" class="fixed inset-x-0 z-40 flex items-center justify-center pointer-events-none px-3 sm:px-4" aria-label="Navigasi Bawah">
-    <div class="flex items-center gap-2.5 max-w-sm w-full justify-center">
+  <nav id="mobileBottomNav" class="fixed inset-x-0 z-40 flex items-center justify-center pointer-events-none px-4" aria-label="Navigasi Bawah">
+    <div class="flex items-center gap-3 max-w-md w-full justify-center">
       
-      <!-- Soft Rounded Capsule Dock (Compact & Balanced) -->
-      <div class="pointer-events-auto bg-[#e5eadf]/95 backdrop-blur-xl border border-white/80 shadow-[0_12px_32px_-4px_rgba(38,61,38,0.22)] rounded-full p-1.5 flex items-center gap-1 transition-all duration-300">
+      <!-- Soft Rounded Capsule Dock (Lebar Lebih Pas & Proporsional) -->
+      <div class="pointer-events-auto bg-[#e5eadf]/95 backdrop-blur-xl border border-white/80 shadow-[0_12px_32px_-4px_rgba(38,61,38,0.22)] rounded-full px-2.5 py-1.5 flex items-center justify-center gap-1.5 transition-all duration-300">
         
         <!-- Dashboard Tab -->
-        <button data-tab="dashboard" class="bottom-nav-btn flex items-center rounded-full py-2 px-3.5 bg-white text-[#263D26] shadow-sm font-semibold text-xs transition-all duration-300 ease-out" title="Dashboard">
+        <button data-tab="dashboard" class="bottom-nav-btn flex items-center rounded-full py-2 px-4 bg-white text-[#263D26] shadow-sm font-semibold text-xs transition-all duration-300 ease-out" title="Dashboard">
           <i class="fa-solid fa-chart-pie text-[15px]"></i>
-          <span class="bottom-nav-label ml-1.5 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-[85px] opacity-100">Dasbor</span>
+          <span class="bottom-nav-label ml-1.5 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-[90px] opacity-100">Dasbor</span>
         </button>
 
         <!-- Keuangan Tab -->
-        <button data-tab="finance" class="bottom-nav-btn flex items-center rounded-full py-2 px-3 text-slate-600 hover:text-[#263D26] text-xs transition-all duration-300 ease-out" title="Keuangan">
+        <button data-tab="finance" class="bottom-nav-btn flex items-center rounded-full py-2 px-3.5 text-slate-600 hover:text-[#263D26] text-xs transition-all duration-300 ease-out" title="Keuangan">
           <i class="fa-solid fa-wallet text-[15px]"></i>
           <span class="bottom-nav-label ml-0 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-0 opacity-0">Keuangan</span>
         </button>
 
         <!-- Tugas Tab -->
-        <button data-tab="tasks" class="bottom-nav-btn flex items-center rounded-full py-2 px-3 text-slate-600 hover:text-[#263D26] text-xs transition-all duration-300 ease-out relative" title="Tugas & Target">
+        <button data-tab="tasks" class="bottom-nav-btn flex items-center rounded-full py-2 px-3.5 text-slate-600 hover:text-[#263D26] text-xs transition-all duration-300 ease-out relative" title="Tugas & Target">
           <i class="fa-solid fa-list-check text-[15px]"></i>
           <span class="bottom-nav-label ml-0 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-0 opacity-0">Tugas</span>
-          <span id="bottomBadgeTasks" class="w-2 h-2 rounded-full bg-[#EDD330] absolute top-1.5 right-1.5 border border-white hidden"></span>
+          <span id="bottomBadgeTasks" class="w-2 h-2 rounded-full bg-[#EDD330] absolute top-1.5 right-2 border border-white hidden"></span>
         </button>
 
         <!-- Catatan Tab -->
-        <button data-tab="notes" class="bottom-nav-btn flex items-center rounded-full py-2 px-3 text-slate-600 hover:text-[#263D26] text-xs transition-all duration-300 ease-out" title="Catatan">
+        <button data-tab="notes" class="bottom-nav-btn flex items-center rounded-full py-2 px-3.5 text-slate-600 hover:text-[#263D26] text-xs transition-all duration-300 ease-out" title="Catatan">
           <i class="fa-solid fa-note-sticky text-[15px]"></i>
           <span class="bottom-nav-label ml-0 text-xs font-semibold whitespace-nowrap overflow-hidden transition-all duration-300 max-w-0 opacity-0">Catatan</span>
         </button>
@@ -867,6 +867,6 @@
   </div>
 
   <!-- Custom JS Application Logic -->
-  <script src="app.js?v=3.5"></script>
+  <script src="app.js?v=3.6"></script>
 </body>
 </html>
