@@ -183,21 +183,18 @@ function updateGreetingDisplay() {
 }
 
 // ==========================================
-// HERO CARD GREETING & BRAND MORPHING
+// HERO CARD GREETING & PERMANENT BRAND SEQUENCE
 // ==========================================
-let heroCollapseTimeout = null;
 let heroMorphStageTimeout = null;
 
 function initHeroGreetingAnimation() {
-  const container = document.getElementById('heroBrandMorphContainer');
   const greetingView = document.getElementById('heroGreetingView');
   const brandView = document.getElementById('heroBrandView');
   const greetingText = document.getElementById('heroGreetingText');
   const dateText = document.getElementById('heroShortDateText');
 
-  if (!container || !greetingView || !brandView) return;
+  if (!greetingView || !brandView) return;
 
-  if (heroCollapseTimeout) clearTimeout(heroCollapseTimeout);
   if (heroMorphStageTimeout) clearTimeout(heroMorphStageTimeout);
 
   const greeting = getWIBGreeting();
@@ -207,82 +204,27 @@ function initHeroGreetingAnimation() {
   if (greetingText) greetingText.textContent = `${greeting}, ${name}`;
   if (dateText) dateText.textContent = shortDate;
 
-  // Stage 1: Tampilkan sapaan personal hangat & tanggal ringkas
-  container.style.maxWidth = '280px';
-  container.style.opacity = '1';
-  container.style.marginLeft = '12px';
+  // Pastikan posisi awal: Brand tersembunyi, Sapaan siap muncul dengan fade in
+  brandView.className = 'absolute left-0 flex items-center transition-opacity duration-700 ease-in-out opacity-0 pointer-events-none whitespace-nowrap py-1';
+  greetingView.className = 'flex flex-col justify-center transition-opacity duration-700 ease-in-out opacity-0 whitespace-nowrap py-1';
 
-  greetingView.className = 'flex flex-col justify-center transition-all duration-600 ease-out opacity-100 transform translate-y-0 whitespace-nowrap py-1';
-  brandView.className = 'absolute left-0 flex items-center transition-all duration-600 ease-out opacity-0 transform translate-y-3 pointer-events-none whitespace-nowrap py-1';
+  // Tahap 1: Sapaan & tanggal muncul secara halus (Fade In)
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      greetingView.className = 'flex flex-col justify-center transition-opacity duration-700 ease-in-out opacity-100 whitespace-nowrap py-1';
+    }, 50);
+  });
 
-  // Stage 2: Setelah ~3.2 detik, berganti dengan transisi halus ke tulisan brand "LifeHub" (tanpa tag Pro)
+  // Tahap 2: Setelah ~2.8 detik, sapaan Fade Out dan tulisan "LifeHub" Fade In secara permanen
   heroMorphStageTimeout = setTimeout(() => {
-    // Sapaan meluncur naik sedikit dan memudar halus
-    greetingView.className = 'flex flex-col justify-center transition-all duration-600 ease-out opacity-0 transform -translate-y-3 pointer-events-none whitespace-nowrap py-1';
-    
-    // Brand LifeHub meluncur dari bawah ke tengah dan muncul tajam
-    brandView.className = 'absolute left-0 flex items-center transition-all duration-600 ease-out opacity-100 transform translate-y-0 pointer-events-auto whitespace-nowrap py-1';
+    // Sapaan memudar secara halus (Fade Out)
+    greetingView.className = 'flex flex-col justify-center transition-opacity duration-700 ease-in-out opacity-0 pointer-events-none whitespace-nowrap py-1';
 
-    // Stage 3: Setelah ~3.2 detik berikutnya, menghilang secara halus ke samping logo
-    heroCollapseTimeout = setTimeout(() => {
-      collapseHeroBrand();
-    }, 3200);
-  }, 3200);
-}
-
-function collapseHeroBrand() {
-  const container = document.getElementById('heroBrandMorphContainer');
-  const brandView = document.getElementById('heroBrandView');
-  const greetingView = document.getElementById('heroGreetingView');
-  if (!container) return;
-
-  if (brandView) {
-    brandView.className = 'absolute left-0 flex items-center transition-all duration-500 ease-out opacity-0 transform -translate-y-2 pointer-events-none whitespace-nowrap py-1';
-  }
-  if (greetingView) {
-    greetingView.className = 'flex flex-col justify-center transition-all duration-500 ease-out opacity-0 transform -translate-y-2 pointer-events-none whitespace-nowrap py-1';
-  }
-
-  setTimeout(() => {
-    container.style.maxWidth = '0px';
-    container.style.opacity = '0';
-    container.style.marginLeft = '0px';
-  }, 250);
-}
-
-function expandHeroBrand() {
-  const container = document.getElementById('heroBrandMorphContainer');
-  const brandView = document.getElementById('heroBrandView');
-  const greetingView = document.getElementById('heroGreetingView');
-  if (!container || !brandView) return;
-
-  if (heroCollapseTimeout) clearTimeout(heroCollapseTimeout);
-  if (heroMorphStageTimeout) clearTimeout(heroMorphStageTimeout);
-
-  if (greetingView) {
-    greetingView.className = 'flex flex-col justify-center opacity-0 pointer-events-none whitespace-nowrap py-1 hidden';
-  }
-
-  container.style.maxWidth = '220px';
-  container.style.opacity = '1';
-  container.style.marginLeft = '12px';
-
-  brandView.className = 'absolute left-0 flex items-center transition-all duration-500 ease-out opacity-100 transform translate-y-0 pointer-events-auto whitespace-nowrap py-1';
-
-  heroCollapseTimeout = setTimeout(() => {
-    collapseHeroBrand();
-  }, 4000);
-}
-
-function toggleHeroBrandReveal() {
-  const container = document.getElementById('heroBrandMorphContainer');
-  if (!container) return;
-  const isCollapsed = container.style.maxWidth === '0px' || container.style.opacity === '0';
-  if (isCollapsed) {
-    expandHeroBrand();
-  } else {
-    collapseHeroBrand();
-  }
+    // Setelah sapaan memudar, munculkan "LifeHub" secara permanen
+    setTimeout(() => {
+      brandView.className = 'absolute left-0 flex items-center transition-opacity duration-700 ease-in-out opacity-100 pointer-events-auto whitespace-nowrap py-1';
+    }, 350);
+  }, 2800);
 }
 
 function openProfileModal() {
