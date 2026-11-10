@@ -125,12 +125,45 @@
         pointer-events: auto;
       }
     }
+
+    /* Meadow Glow Immersive Hero Gradient (Image 2 Style) */
+    .meadow-hero-card {
+      background: linear-gradient(155deg, #2e5123 0%, #1f3918 45%, #132511 100%);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.14);
+      box-shadow: 0 16px 36px -12px rgba(20, 36, 16, 0.38), inset 0 1px 1px rgba(255, 255, 255, 0.22);
+    }
+
+    .meadow-hero-card::before {
+      content: '';
+      position: absolute;
+      top: -25%;
+      right: -10%;
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(circle, rgba(237, 211, 48, 0.28) 0%, rgba(167, 185, 42, 0.2) 35%, transparent 70%);
+      filter: blur(36px);
+      pointer-events: none;
+    }
+
+    .meadow-hero-card::after {
+      content: '';
+      position: absolute;
+      bottom: -25%;
+      left: -10%;
+      width: 260px;
+      height: 260px;
+      background: radial-gradient(circle, rgba(111, 148, 53, 0.35) 0%, rgba(38, 61, 38, 0.45) 50%, transparent 75%);
+      filter: blur(32px);
+      pointer-events: none;
+    }
   </style>
 </head>
 <body class="bg-[#f9faf7] text-slate-800 min-h-screen flex flex-col md:flex-row antialiased">
 
-  <!-- Mobile Top Bar -->
-  <header class="md:hidden bg-white border-b border-[#e5ebdf] px-4 py-3 flex items-center justify-between sticky top-0 z-30 shadow-sm">
+  <!-- Mobile Top Bar (Hanya tampil di tab selain Dasbor untuk akses Menu & Brand) -->
+  <header id="mobileTopHeader" class="md:hidden bg-white border-b border-[#e5ebdf] px-4 py-3 flex items-center justify-between sticky top-0 z-30 shadow-sm transition-all duration-300 hidden">
     <div class="flex items-center space-x-2">
       <div class="w-9 h-9 rounded-xl bg-[#263D26] flex items-center justify-center text-[#EDD330] shadow-sm">
         <i class="fa-solid fa-shapes text-base"></i>
@@ -290,46 +323,77 @@
   <!-- Main Content Area -->
   <main class="flex-1 overflow-y-auto h-screen p-3.5 sm:p-6 lg:p-8 pb-28 md:pb-8 custom-scrollbar transition-all duration-300 ease-in-out">
     
-    <!-- Top Greeting & Date -->
-    <header id="topGreetingHeader" class="flex items-center justify-between gap-3 mb-5 sm:mb-8">
-      <div>
-        <h2 id="pageGreeting" class="text-lg sm:text-2xl font-bold text-slate-900 leading-tight">Memuat sapaan...</h2>
-        <p id="currentDateDisplay" class="text-xs sm:text-sm text-slate-500 mt-0.5 sm:mt-1">Memuat tanggal...</p>
-      </div>
-      <div class="flex items-center gap-2">
-        <!-- Desktop Quick Add Button (Smoothly hides on mobile via responsive transition) -->
-        <button id="quickAddBtn" class="items-center gap-1.5 sm:gap-2 bg-[#6F9435] hover:bg-[#5e802c] text-white px-3 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-medium shadow-sm shadow-[#6F9435]/25 transition-all flex-shrink-0">
-          <i class="fa-solid fa-plus text-[#EDD330] text-xs sm:text-sm"></i>
-          <span>Entri Baru</span>
-        </button>
-      </div>
-    </header>
-
     <!-- ============================================== -->
     <!-- TAB 1: DASHBOARD OVERVIEW (BENTO UI) -->
     <!-- ============================================== -->
-    <section id="tab-dashboard" class="tab-content space-y-3 sm:space-y-6">
-      <!-- Bento Grid Metric Cards -->
-      <div class="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
-        <!-- Saldo Bersih (Hero Bento Tile) -->
-        <div class="col-span-2 sm:col-span-1 lg:col-span-1 bg-gradient-to-br from-[#263D26] via-[#2f492f] to-[#1a2c1a] text-white p-4 sm:p-5 rounded-2xl shadow-md shadow-[#263D26]/20 flex flex-col justify-between relative overflow-hidden">
-          <div class="flex items-center justify-between mb-2 sm:mb-3">
-            <span class="text-[10px] sm:text-xs font-semibold text-[#EDD330] uppercase tracking-wider">Saldo Kas</span>
-            <span class="w-6 h-6 sm:w-8 sm:h-8 rounded-lg bg-white/10 text-[#EDD330] flex items-center justify-center text-xs backdrop-blur-sm">
-              <i class="fa-solid fa-wallet"></i>
-            </span>
+    <section id="tab-dashboard" class="tab-content space-y-3 sm:space-y-5">
+      
+      <!-- Grand Hero Balance Card (Image 2 Style dengan Gradasi Meadow Glow) -->
+      <div class="meadow-hero-card w-full rounded-3xl p-5 sm:p-7 text-white shadow-xl shadow-[#263D26]/20 relative">
+        
+        <!-- Top Bar inside Hero (Logo + Morphing Greeting/LifeHub & 3-Strip Menu Button) -->
+        <div class="flex items-center justify-between relative z-10 mb-6 sm:mb-8">
+          <!-- Left: Logo & Morphing Brand/Greeting -->
+          <div class="flex items-center">
+            <button id="heroLogoButton" onclick="toggleHeroBrandReveal()" class="w-10 h-10 rounded-2xl bg-white/10 hover:bg-white/20 active:scale-95 backdrop-blur-md border border-white/20 text-[#EDD330] flex items-center justify-center shadow-md transition-all flex-shrink-0 cursor-pointer" title="Klik untuk tampilkan nama brand">
+              <i class="fa-solid fa-shapes text-lg"></i>
+            </button>
+            <div id="heroBrandMorphContainer" class="flex items-center overflow-hidden transition-all duration-500 ease-out" style="max-width: 240px;">
+              <!-- Dynamic Greeting & LifeHub diisi secara otomatis oleh JS -->
+            </div>
           </div>
-          <div>
-            <div id="dashTotalBalance" class="text-xl sm:text-2xl font-black text-white tracking-tight">Rp 0</div>
-            <p id="dashFinanceMonthlyDiff" class="text-[10px] sm:text-xs text-[#f4f7e6]/80 mt-1 truncate">Pemasukan vs Pengeluaran</p>
+
+          <!-- Right: Desktop Quick Add & Mobile 3-Strip Menu Button -->
+          <div class="flex items-center gap-2">
+            <!-- Desktop Quick Add Button -->
+            <button id="quickAddBtn" class="hidden md:inline-flex items-center gap-2 bg-[#6F9435] hover:bg-[#5e802c] text-white px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold shadow-md shadow-black/20 transition-all flex-shrink-0">
+              <i class="fa-solid fa-plus text-[#EDD330] text-xs sm:text-sm"></i>
+              <span>Entri Baru</span>
+            </button>
+
+            <!-- Mobile 3-Strip Hamburger Menu Button (Menuju ke Side Navigasi) -->
+            <button id="heroMobileMenuBtn" type="button" class="md:hidden w-10 h-10 rounded-full bg-white/10 hover:bg-white/20 active:scale-95 text-white backdrop-blur-md border border-white/20 flex items-center justify-center shadow-md transition-all focus:outline-none" title="Menu Navigasi">
+              <i class="fa-solid fa-bars text-base"></i>
+            </button>
           </div>
         </div>
 
+        <!-- Center: Hero Balance Display -->
+        <div class="relative z-10">
+          <span class="text-xs sm:text-sm font-medium text-white/70 uppercase tracking-wider block">Saldo Kas Utama</span>
+          <div id="dashTotalBalance" class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight mt-1 mb-2.5 drop-shadow-sm">Rp 0</div>
+          
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/15 text-xs text-white/90">
+            <span class="w-2 h-2 rounded-full bg-[#EDD330] animate-pulse"></span>
+            <span id="dashFinanceMonthlyDiff" class="font-medium">Pemasukan vs Pengeluaran</span>
+          </div>
+        </div>
+
+        <!-- Glassmorphic Card Strip (Image 2 Card Layer) -->
+        <div class="relative z-10 mt-5 pt-3.5 border-t border-white/10 flex items-center justify-between text-xs text-white/90">
+          <div class="flex items-center gap-2.5">
+            <span class="w-7 h-7 rounded-lg bg-white/10 text-[#EDD330] flex items-center justify-center text-xs">
+              <i class="fa-solid fa-wallet"></i>
+            </span>
+            <div>
+              <p class="font-semibold text-white text-xs">Dompet Pribadi</p>
+              <p class="text-[10px] text-white/60">Arus Kas Terkelola</p>
+            </div>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-[10px] text-[#EDD330] font-semibold bg-white/10 px-2 py-0.5 rounded-md border border-white/10">&bull;&bull;&bull;&bull; IDR</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bento Grid Metric Cards (Pemasukan, Pengeluaran, Tugas) -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-4">
         <!-- Total Pemasukan Bento Tile -->
         <div class="col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-[#e5ebdf] shadow-sm flex flex-col justify-between hover:border-[#6F9435]/50 transition-all">
           <div class="flex items-center justify-between mb-2 sm:mb-3">
             <span class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider truncate">Pemasukan</span>
-            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#6F9435]/15 text-[#6F9435] flex items-center justify-center text-xs flex-shrink-0">
+            <span class="w-7 h-7 rounded-lg bg-[#6F9435]/15 text-[#6F9435] flex items-center justify-center text-xs flex-shrink-0">
               <i class="fa-solid fa-arrow-down"></i>
             </span>
           </div>
@@ -343,7 +407,7 @@
         <div class="col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-[#e5ebdf] shadow-sm flex flex-col justify-between hover:border-rose-200 transition-all">
           <div class="flex items-center justify-between mb-2 sm:mb-3">
             <span class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider truncate">Pengeluaran</span>
-            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-xs flex-shrink-0">
+            <span class="w-7 h-7 rounded-lg bg-rose-50 text-rose-600 flex items-center justify-center text-xs flex-shrink-0">
               <i class="fa-solid fa-arrow-up"></i>
             </span>
           </div>
@@ -354,10 +418,10 @@
         </div>
 
         <!-- Tugas Aktif Bento Tile -->
-        <div class="col-span-2 sm:col-span-1 lg:col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-[#e5ebdf] shadow-sm flex flex-col justify-between hover:border-[#EDD330]/70 transition-all">
+        <div class="col-span-2 sm:col-span-1 bg-white p-3.5 sm:p-5 rounded-2xl border border-[#e5ebdf] shadow-sm flex flex-col justify-between hover:border-[#EDD330]/70 transition-all">
           <div class="flex items-center justify-between mb-2 sm:mb-3">
             <span class="text-[10px] sm:text-xs font-semibold text-slate-500 uppercase tracking-wider">Tugas Pending</span>
-            <span class="w-6 h-6 sm:w-7 sm:h-7 rounded-lg bg-[#EDD330]/25 text-[#736306] flex items-center justify-center text-xs">
+            <span class="w-7 h-7 rounded-lg bg-[#EDD330]/25 text-[#736306] flex items-center justify-center text-xs">
               <i class="fa-solid fa-list-check"></i>
             </span>
           </div>
@@ -867,6 +931,6 @@
   </div>
 
   <!-- Custom JS Application Logic -->
-  <script src="app.js?v=3.6"></script>
+  <script src="app.js?v=3.7"></script>
 </body>
 </html>

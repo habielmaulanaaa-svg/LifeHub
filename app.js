@@ -103,6 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initFormCategories();
   initEventListeners();
   renderAll();
+  initHeroGreetingAnimation();
 });
 
 function initDateDisplay() {
@@ -122,6 +123,13 @@ function initDateDisplay() {
 
   // Update dynamic WIB greeting and user name
   updateGreetingDisplay();
+}
+
+function getShortIndonesianDate() {
+  const now = new Date();
+  const days = ['Min', 'Sen', 'Sel', 'Rab', 'Kam', 'Jum', 'Sab'];
+  const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
+  return `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]}`;
 }
 
 // ==========================================
@@ -174,6 +182,114 @@ function updateGreetingDisplay() {
   }
 }
 
+// ==========================================
+// HERO CARD GREETING & BRAND MORPHING
+// ==========================================
+let heroCollapseTimeout = null;
+let heroMorphStageTimeout = null;
+
+function initHeroGreetingAnimation() {
+  const container = document.getElementById('heroBrandMorphContainer');
+  if (!container) return;
+
+  if (heroCollapseTimeout) clearTimeout(heroCollapseTimeout);
+  if (heroMorphStageTimeout) clearTimeout(heroMorphStageTimeout);
+
+  const greeting = getWIBGreeting();
+  const name = getUserName();
+  const shortDate = getShortIndonesianDate();
+
+  // Stage 1: Tampilkan sapaan personal hangat & tanggal ringkas
+  container.style.maxWidth = '260px';
+  container.style.opacity = '1';
+  container.style.marginLeft = '12px';
+  container.innerHTML = `
+    <div id="heroMorphItem" class="flex flex-col transition-all duration-500 ease-out opacity-100 transform translate-x-0">
+      <span class="text-xs sm:text-sm font-bold text-white tracking-tight leading-tight drop-shadow-sm">${escapeHtml(greeting)}, ${escapeHtml(name)}</span>
+      <span class="text-[10px] sm:text-[11px] text-[#EDD330] font-medium mt-0.5 leading-none flex items-center gap-1.5 opacity-90 drop-shadow-sm">
+        <i class="fa-regular fa-calendar-days text-[9px]"></i> ${shortDate}
+      </span>
+    </div>
+  `;
+
+  // Stage 2: Setelah ~3.2 detik, berganti dengan transisi halus ke tulisan brand "LifeHub"
+  heroMorphStageTimeout = setTimeout(() => {
+    const item = document.getElementById('heroMorphItem');
+    if (item) {
+      item.classList.remove('opacity-100', 'translate-x-0');
+      item.classList.add('opacity-0', '-translate-x-2');
+    }
+
+    setTimeout(() => {
+      container.innerHTML = `
+        <div id="heroMorphItem" class="flex items-center transition-all duration-500 ease-out opacity-0 transform translate-x-2">
+          <span class="font-brand text-lg sm:text-xl font-black tracking-tight text-white leading-none drop-shadow-sm">Life<span class="text-[#EDD330]">Hub</span></span>
+          <span class="ml-2 text-[9px] font-bold uppercase tracking-widest bg-white/15 px-1.5 py-0.5 rounded text-white/90 border border-white/10">Pro</span>
+        </div>
+      `;
+      requestAnimationFrame(() => {
+        const brandItem = document.getElementById('heroMorphItem');
+        if (brandItem) {
+          brandItem.classList.remove('opacity-0', 'translate-x-2');
+          brandItem.classList.add('opacity-100', 'translate-x-0');
+        }
+      });
+
+      // Stage 3: Setelah ~3.2 detik, menghilang secara halus ke samping logo (minimalis Image 2)
+      heroCollapseTimeout = setTimeout(() => {
+        collapseHeroBrand();
+      }, 3200);
+    }, 400);
+  }, 3200);
+}
+
+function collapseHeroBrand() {
+  const container = document.getElementById('heroBrandMorphContainer');
+  if (!container) return;
+  const item = document.getElementById('heroMorphItem');
+  if (item) {
+    item.classList.remove('opacity-100', 'translate-x-0');
+    item.classList.add('opacity-0', '-translate-x-2');
+  }
+  setTimeout(() => {
+    container.style.maxWidth = '0px';
+    container.style.opacity = '0';
+    container.style.marginLeft = '0px';
+  }, 350);
+}
+
+function expandHeroBrand() {
+  const container = document.getElementById('heroBrandMorphContainer');
+  if (!container) return;
+  if (heroCollapseTimeout) clearTimeout(heroCollapseTimeout);
+  if (heroMorphStageTimeout) clearTimeout(heroMorphStageTimeout);
+
+  container.innerHTML = `
+    <div id="heroMorphItem" class="flex items-center transition-all duration-400 ease-out opacity-100 transform translate-x-0">
+      <span class="font-brand text-lg sm:text-xl font-black tracking-tight text-white leading-none drop-shadow-sm">Life<span class="text-[#EDD330]">Hub</span></span>
+      <span class="ml-2 text-[9px] font-bold uppercase tracking-widest bg-white/15 px-1.5 py-0.5 rounded text-white/90 border border-white/10">Pro</span>
+    </div>
+  `;
+  container.style.maxWidth = '220px';
+  container.style.opacity = '1';
+  container.style.marginLeft = '12px';
+
+  heroCollapseTimeout = setTimeout(() => {
+    collapseHeroBrand();
+  }, 4000);
+}
+
+function toggleHeroBrandReveal() {
+  const container = document.getElementById('heroBrandMorphContainer');
+  if (!container) return;
+  const isCollapsed = container.style.maxWidth === '0px' || container.style.opacity === '0';
+  if (isCollapsed) {
+    expandHeroBrand();
+  } else {
+    collapseHeroBrand();
+  }
+}
+
 function openProfileModal() {
   closeMobileDrawer();
   const input = document.getElementById('inputProfileName');
@@ -188,6 +304,7 @@ function handleProfileSubmit(e) {
   localStorage.setItem('lifehub_user_name', newName);
   closeModal('modalProfile');
   updateGreetingDisplay();
+  initHeroGreetingAnimation();
 }
 
 // Drawer helpers (dengan scroll lock layar latar & sembunyikan FAB secara halus)
@@ -239,6 +356,7 @@ function initNavigation() {
 
   // Mobile menu drawer
   const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+  const heroMobileMenuBtn = document.getElementById('heroMobileMenuBtn');
   const sidebar = document.getElementById('sidebar');
   const backdrop = document.getElementById('mobileBackdrop');
   const closeMobileMenuBtn = document.getElementById('closeMobileMenuBtn');
@@ -251,6 +369,13 @@ function initNavigation() {
       } else {
         openMobileDrawer();
       }
+    });
+  }
+
+  // Hero Mobile 3-Strip Menu Button (Tombol Garis Strip 3 di Kanan Atas Hero Saldo)
+  if (heroMobileMenuBtn) {
+    heroMobileMenuBtn.addEventListener('click', () => {
+      openMobileDrawer();
     });
   }
 
@@ -317,15 +442,14 @@ function switchTab(tabId) {
     }
   });
 
-  // Khusus tampilan Android/Mobile: sapaan waktu hanya ditampilkan di tab dasbor
-  const topGreeting = document.getElementById('topGreetingHeader');
-  if (topGreeting) {
+  // Khusus tampilan Android/Mobile: mobileTopHeader disembunyikan di tab dasbor karena sudah terintegrasi
+  // langsung di dalam kartu hero gradasi Meadow Glow, dan ditampilkan di tab lain (keuangan, tugas, catatan).
+  const mobileHeader = document.getElementById('mobileTopHeader');
+  if (mobileHeader) {
     if (tabId === 'dashboard') {
-      topGreeting.classList.remove('hidden', 'md:flex');
-      topGreeting.classList.add('flex');
+      mobileHeader.classList.add('hidden');
     } else {
-      topGreeting.classList.remove('flex');
-      topGreeting.classList.add('hidden', 'md:flex');
+      mobileHeader.classList.remove('hidden');
     }
   }
 
@@ -429,6 +553,18 @@ function renderDashboard() {
   document.getElementById('dashTotalBalance').textContent = formatCurrency(balance);
   document.getElementById('dashTotalIncome').textContent = `+ ${formatCurrency(totalIncome)}`;
   document.getElementById('dashTotalExpense').textContent = `- ${formatCurrency(totalExpense)}`;
+
+  // Status Pill Indikator Saldo Hero (Image 2 Style)
+  const diffEl = document.getElementById('dashFinanceMonthlyDiff');
+  if (diffEl) {
+    if (balance > 0) {
+      diffEl.innerHTML = `<i class="fa-solid fa-arrow-trend-up text-[#EDD330] mr-1"></i>+${formatCurrency(balance)} Surplus Terkelola`;
+    } else if (balance < 0) {
+      diffEl.innerHTML = `<i class="fa-solid fa-arrow-trend-down text-rose-300 mr-1"></i>-${formatCurrency(Math.abs(balance))} Defisit Kas`;
+    } else {
+      diffEl.innerHTML = `<i class="fa-solid fa-check text-[#EDD330] mr-1"></i>Arus Kas Seimbang`;
+    }
+  }
 
   // Metrics: Tasks
   const pendingTasks = tasks.filter(t => !t.completed);
