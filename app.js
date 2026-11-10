@@ -114,6 +114,74 @@ function initDateDisplay() {
   const taskDueDateInput = document.getElementById('taskDueDate');
   if (financeDateInput) financeDateInput.value = today;
   if (taskDueDateInput) taskDueDateInput.value = today;
+
+  // Update dynamic WIB greeting and user name
+  updateGreetingDisplay();
+}
+
+// ==========================================
+// USER PROFILE & TIME-BASED GREETING (WIB)
+// ==========================================
+function getUserName() {
+  return localStorage.getItem('lifehub_user_name') || 'Habil';
+}
+
+function getWIBGreeting() {
+  // Compute current hour in WIB (UTC+7)
+  const now = new Date();
+  const utc = now.getTime() + (now.getTimezoneOffset() * 60000);
+  const wibTime = new Date(utc + (7 * 3600000));
+  const hour = wibTime.getHours();
+
+  // Aturan waktu WIB:
+  // - 12 malam hingga pukul 8 (00:00 - 08:59): Selamat Pagi
+  // - Pukul 9 hingga 11:59: Selamat Siang
+  // - Pukul 12 hingga 4 sore (12:00 - 16:59): Selamat Sore
+  // - Jam 5 sore hingga 12 malam (17:00 - 23:59): Selamat Malam
+  if (hour >= 0 && hour < 9) {
+    return 'Selamat Pagi';
+  } else if (hour >= 9 && hour < 12) {
+    return 'Selamat Siang';
+  } else if (hour >= 12 && hour < 17) {
+    return 'Selamat Sore';
+  } else {
+    return 'Selamat Malam';
+  }
+}
+
+function updateGreetingDisplay() {
+  const greeting = getWIBGreeting();
+  const name = getUserName();
+
+  const greetingEl = document.getElementById('pageGreeting');
+  if (greetingEl) {
+    greetingEl.textContent = `${greeting}, ${name}`;
+  }
+
+  const sidebarNameEl = document.getElementById('sidebarUserName');
+  if (sidebarNameEl) {
+    sidebarNameEl.textContent = name;
+  }
+
+  const avatarInitialEl = document.getElementById('sidebarAvatarInitial');
+  if (avatarInitialEl) {
+    avatarInitialEl.textContent = name.charAt(0).toUpperCase() || 'H';
+  }
+}
+
+function openProfileModal() {
+  const input = document.getElementById('inputProfileName');
+  if (input) input.value = getUserName();
+  openModal('modalProfile');
+}
+
+function handleProfileSubmit(e) {
+  e.preventDefault();
+  const input = document.getElementById('inputProfileName');
+  const newName = input.value.trim() || 'Habil';
+  localStorage.setItem('lifehub_user_name', newName);
+  closeModal('modalProfile');
+  updateGreetingDisplay();
 }
 
 function initNavigation() {
@@ -924,7 +992,7 @@ function closeModal(modalId) {
 
 // Close modals when clicking backdrop
 window.addEventListener('click', (e) => {
-  ['modalFinance', 'modalTask', 'modalNote'].forEach(id => {
+  ['modalFinance', 'modalTask', 'modalNote', 'modalProfile'].forEach(id => {
     const el = document.getElementById(id);
     if (el && e.target === el) {
       closeModal(id);
